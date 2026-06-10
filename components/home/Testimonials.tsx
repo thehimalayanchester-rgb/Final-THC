@@ -36,20 +36,22 @@ const reviews = [
 
 const Testimonials = () => {
   return (
-    <section className="bg-[#0a0f12] py-24 px-6 lg:px-20 overflow-hidden">
+    <section className="relative bg-linear-to-b from-[#0a0f12] to-[#0d141b] py-24 px-6 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="font-sans text-[#c5a367] uppercase tracking-[4px] text-[13px] font-bold mb-4 block">
-            Guest Book
+            <span className="eyebrow-rule">Guest Book</span>
           </span>
           <h2 className="font-serif text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">
-            Tales from Travellers
+            Tales from <span className="text-gold-gradient italic">Travellers</span>
           </h2>
-          <div className="flex justify-center gap-6 text-[#c5a367] text-lg opacity-80">
+          <div className="flex justify-center items-center gap-4 text-[#c5a367] text-lg opacity-80">
+            <span className="h-px w-10 bg-linear-to-r from-transparent to-[#c5a367]/60" />
             <FontAwesomeIcon icon={faLeaf} />
             <FontAwesomeIcon icon={faSun} />
             <FontAwesomeIcon icon={faMountain} />
+            <span className="h-px w-10 bg-linear-to-l from-transparent to-[#c5a367]/60" />
           </div>
         </div>
 
@@ -62,7 +64,7 @@ const Testimonials = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2, duration: 0.8 }}
-              className="relative bg-[#0d1317] p-8 md:p-10 border-t-4 border-[#c5a367] shadow-2xl group hover:bg-[#11191f] transition-all duration-500"
+              className="relative bg-linear-to-b from-[#11191f] to-[#0b1013] p-8 md:p-10 border-t-4 border-[#c5a367] shadow-2xl group hover:from-[#16212a] hover:-translate-y-1 transition-all duration-500"
             >
               {/* Quote Watermark */}
               <div className="absolute top-8 right-8 opacity-5 group-hover:opacity-10 transition-opacity">

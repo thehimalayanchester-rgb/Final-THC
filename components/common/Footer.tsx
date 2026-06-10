@@ -7,7 +7,6 @@ import {
   faPhone,
   faEnvelope,
   faChevronRight,
-  faPaperPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookF,
@@ -21,14 +20,14 @@ const Footer = () => {
   const quickLinks = [
     { name: "About Us", href: "/about" },
     { name: "Our Rooms", href: "/rooms" },
-    { name: "Services", href: "/services" },
+    { name: "Menu", href: "/menu" },
     { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
   ];
 
   return (
     <footer className="bg-[#0d1317] text-white pt-20 pb-10 px-6 lg:px-20 border-t border-white/5">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
         {/* Column 1: Brand & Bio */}
         <div className="flex flex-col gap-6">
           <Link href="/" className="relative h-20 w-40">
@@ -114,29 +113,6 @@ const Footer = () => {
               </Link>
             </li>
           </ul>
-        </div>
-
-        {/* Column 4: Newsletter */}
-        <div>
-          <h4 className="font-serif text-2xl mb-8 border-b border-[#c5a367] w-fit pb-2">
-            Newsletter
-          </h4>
-          <p className="text-gray-400 font-sans mb-6 text-[15px]">
-            Subscribe to get special offers and updates on new events.
-          </p>
-          <form className="relative flex items-center">
-            <input
-              type="email"
-              placeholder="Email Address..."
-              className="w-full bg-[#161d23] border border-white/5 py-4 px-5 pr-14 text-white font-sans focus:outline-none focus:border-[#c5a367] transition-colors"
-            />
-            <button
-              type="submit"
-              className="absolute right-0 top-0 bottom-0 bg-[#c5a367] text-black w-14 flex items-center justify-center hover:bg-white transition-colors duration-300"
-            >
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </button>
-          </form>
         </div>
       </div>
 

@@ -1,15 +1,18 @@
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faUtensils,
-  faFire,
-  faMapMarkedAlt,
+  faPersonSwimming,
+  faSquareParking,
   faWifi,
-  faCoffee,
-  faCar,
+  faChalkboardUser,
   faSpa,
-  faSnowflake,
+  faDumbbell,
+  faRing,
+  faHandshake,
+  faChampagneGlasses,
+  faMugSaucer,
   faLeaf,
   faSun,
   faMountain,
@@ -17,50 +20,60 @@ import {
 
 const amenities = [
   {
-    title: "Traditional Dining",
-    desc: "Savor authentic Himachali Dham and local delicacies.",
-    icon: faUtensils,
+    title: "Swimming Pool",
+    desc: "Take a refreshing dip in our pristine pool with mountain views.",
+    icon: faPersonSwimming,
   },
   {
-    title: "Bonfire Nights",
-    desc: "Cozy evenings under the stars with live local music.",
-    icon: faFire,
+    title: "Car Parking",
+    desc: "Ample secure on-site parking for all our valued guests.",
+    icon: faSquareParking,
   },
   {
-    title: "Guided Treks",
-    desc: "Explore hidden trails and alpine meadows with experts.",
-    icon: faMapMarkedAlt,
-  },
-  {
-    title: "High-Speed Wi-Fi",
-    desc: "Stay connected even in the remote mountains.",
+    title: "Wi-Fi",
+    desc: "Stay connected with complimentary high-speed internet throughout.",
     icon: faWifi,
   },
   {
-    title: "Café & Lounge",
-    desc: "Artisanal coffee and teas overlooking the peaks.",
-    icon: faCoffee,
+    title: "Conference Hall",
+    desc: "A spacious, fully-equipped hall for seminars and presentations.",
+    icon: faChalkboardUser,
   },
   {
-    title: "Airport Transfers",
-    desc: "Seamless pickup and drop facilities available.",
-    icon: faCar,
-  },
-  {
-    title: "Ayurvedic Spa",
-    desc: "Rejuvenating therapies using mountain herbs.",
+    title: "Spa",
+    desc: "Rejuvenating therapies and treatments to soothe body and mind.",
     icon: faSpa,
   },
   {
-    title: "Winter Sports",
-    desc: "Skiing and snowboarding arrangements nearby.",
-    icon: faSnowflake,
+    title: "Indoor Gym",
+    desc: "A modern fitness centre to keep up your routine while away.",
+    icon: faDumbbell,
+  },
+  {
+    title: "Destination Wedding",
+    desc: "Celebrate your special day amid breathtaking Himalayan vistas.",
+    icon: faRing,
+  },
+  {
+    title: "Conference Meeting",
+    desc: "Professional spaces designed for productive corporate gatherings.",
+    icon: faHandshake,
+  },
+  {
+    title: "Event & Party",
+    desc: "Host memorable celebrations with our dedicated event services.",
+    icon: faChampagneGlasses,
+  },
+  {
+    title: "Coffee Shop",
+    desc: "Artisanal coffee, teas and snacks served all day long.",
+    icon: faMugSaucer,
   },
 ];
 
 const Amenities = () => {
   return (
-    <section className="bg-[#0a0f12] py-24 px-6 lg:px-20 overflow-hidden">
+    <section className="bg-[#0a0f12] py-16 md:py-24 px-6 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -70,7 +83,7 @@ const Amenities = () => {
             viewport={{ once: true }}
             className="font-sans text-[#c5a367] uppercase tracking-[4px] text-[13px] font-bold mb-4 block"
           >
-            Amenities & Experiences
+            <span className="eyebrow-rule">Amenities &amp; Experiences</span>
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -79,23 +92,25 @@ const Amenities = () => {
             transition={{ delay: 0.2 }}
             className="font-serif text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6"
           >
-            Curated For You
+            Curated <span className="text-gold-gradient italic">For You</span>
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
-            className="flex justify-center gap-6 text-[#c5a367] text-lg opacity-80"
+            className="flex justify-center items-center gap-4 text-[#c5a367] text-lg opacity-80"
           >
+            <span className="h-px w-10 bg-linear-to-r from-transparent to-[#c5a367]/60" />
             <FontAwesomeIcon icon={faLeaf} />
             <FontAwesomeIcon icon={faSun} />
             <FontAwesomeIcon icon={faMountain} />
+            <span className="h-px w-10 bg-linear-to-l from-transparent to-[#c5a367]/60" />
           </motion.div>
         </div>
 
         {/* Amenities Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="flex flex-wrap justify-center gap-6 lg:gap-8">
           {amenities.map((item, i) => (
             <motion.div
               key={i}
@@ -107,8 +122,11 @@ const Amenities = () => {
                 y: -10,
                 transition: { duration: 0.3 },
               }}
-              className="bg-white group p-8 lg:p-10 flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_rgba(197,163,103,0.2)] transition-all duration-300"
+              className="relative overflow-hidden w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(25%-1.5rem)] bg-linear-to-b from-white to-[#f4f1ea] group p-8 lg:p-10 flex flex-col items-center text-center shadow-[0_10px_30px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_rgba(197,163,103,0.25)] transition-all duration-300"
             >
+              {/* Animated gold top accent */}
+              <span className="absolute top-0 left-0 h-[3px] w-0 bg-[#c5a367] group-hover:w-full transition-all duration-500" />
+
               {/* Icon Circle */}
               <div className="w-16 h-16 rounded-full bg-[#0d1317] flex items-center justify-center mb-6 group-hover:bg-[#c5a367] transition-colors duration-500">
                 <FontAwesomeIcon
@@ -129,6 +147,22 @@ const Amenities = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Book Now CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-12 md:mt-16 text-center"
+        >
+          <Link
+            href="/checkout"
+            className="inline-block bg-[#c5a367] hover:bg-white text-black px-12 py-4 text-[14px] font-black uppercase tracking-[2px] transition-all duration-500 shadow-lg active:scale-[0.98]"
+          >
+            Book Now
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

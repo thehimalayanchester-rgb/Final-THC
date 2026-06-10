@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    // Reduced padding: 180px on mobile is enough to clear the stacked bar
-    <section className="bg-[#0a0f12] pt-[300px] pb-24 md:pt-40 md:pb-32 px-6 lg:px-20 overflow-hidden">
+    <section className="bg-[#0a0f12] py-24 md:py-32 px-6 lg:px-20 overflow-hidden">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
         {/* Left Side: Image with Experience Badge */}
         <motion.div
@@ -16,6 +16,9 @@ const About = () => {
           className="relative w-full lg:w-1/2"
         >
           <div className="relative aspect-[4/5] w-full border border-white/10 p-3 lg:p-4">
+            {/* Decorative gold corner accents */}
+            <span className="absolute -top-px -left-px w-10 h-10 border-t-2 border-l-2 border-[#c5a367]" />
+            <span className="absolute -bottom-px -right-px w-10 h-10 border-b-2 border-r-2 border-[#c5a367]" />
             <div className="relative w-full h-full overflow-hidden">
               <Image
                 src="/about-section.png"
@@ -53,12 +56,14 @@ const About = () => {
           className="w-full lg:w-1/2"
         >
           <span className="font-sans text-[#c5a367] uppercase tracking-[4px] text-[13px] font-bold mb-6 block">
-            Welcome to Our World
+            <span className="eyebrow-rule">Welcome to Our World</span>
           </span>
 
           <h2 className="font-serif text-white text-4xl md:text-5xl lg:text-7xl leading-tight mb-8">
             A Sanctuary of <br />
-            <span className="italic font-normal">Peace & Culture</span>
+            <span className="italic font-normal text-gold-gradient">
+              Peace &amp; Culture
+            </span>
           </h2>
 
           <div className="space-y-6 text-gray-400 font-sans text-[16px] md:text-[18px] leading-relaxed font-light">
@@ -83,6 +88,15 @@ const About = () => {
                 Founder & Host
               </span>
             </div>
+          </div>
+
+          <div className="mt-10">
+            <Link
+              href="/about"
+              className="inline-block border border-[#c5a367]/40 px-10 py-4 text-[#c5a367] text-[13px] font-bold uppercase tracking-[2px] hover:bg-[#c5a367] hover:text-black transition-all duration-300"
+            >
+              Know More
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -18,7 +18,7 @@ const CTA = () => {
   return (
     <section
       ref={containerRef}
-      className="relative h-[500px] md:h-[600px] w-full flex items-center justify-center overflow-hidden"
+      className="relative h-105 md:h-150 w-full flex items-center justify-center overflow-hidden"
     >
       {/* Parallax Background Image */}
       <motion.div
@@ -33,17 +33,21 @@ const CTA = () => {
         />
       </motion.div>
 
+      {/* Gradient blend into adjacent dark sections + center focus */}
+      <div className="absolute inset-0 z-0 bg-linear-to-b from-[#0a0f12] via-transparent to-[#0a0f12]" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(10,15,18,0.6)_100%)]" />
+
       {/* Content Overlay */}
-      <div className="relative z-10 text-center px-6 max-w-4xl">
+      <div className="relative z-10 text-center px-6 max-w-5xl">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="font-serif text-white text-3xl md:text-5xl lg:text-6xl leading-tight mb-6"
+          className="font-serif text-white text-3xl md:text-5xl lg:text-6xl leading-tight mb-6 text-balance"
         >
           Ready to immerse yourself in the <br />
-          <span className="italic text-[#c5a367]">Pahari Elegance?</span>
+          <span className="italic text-gold-gradient">Pahari Elegance?</span>
         </motion.h2>
 
         <motion.p
