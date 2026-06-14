@@ -8,7 +8,7 @@ export const WHATSAPP_NUMBER = "916230379910";
 // Display version of the phone/WhatsApp number.
 export const WHATSAPP_DISPLAY = "+91 62303 79910";
 
-// Phone number (same as WhatsApp) — display + tel: link forms.
+// Phone number (same as WhatsApp), display + tel: link forms.
 export const PHONE_DISPLAY = WHATSAPP_DISPLAY;
 export const PHONE_TEL = "+916230379910";
 

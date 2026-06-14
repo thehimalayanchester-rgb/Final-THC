@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Blog | The Himalayan Chester",
   description:
-    "Stories, guides and inspiration from the Himalayas — travel tips, local culture and life at The Himalayan Chester.",
+    "Stories, guides and inspiration from the Himalayas: travel tips, local culture and life at The Himalayan Chester.",
 };
 
 function excerpt(html: string, len = 150) {

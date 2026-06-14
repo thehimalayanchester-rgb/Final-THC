@@ -71,7 +71,7 @@ export default function PaymentCancellationPage() {
     <LegalShell
       title="Payment & Cancellation Policy"
       lastUpdated="June 14, 2026"
-      intro="The following policies apply to all bookings and stays at The Himalayan Chester. Please review them carefully — confirming a booking constitutes acceptance of these terms."
+      intro="The following policies apply to all bookings and stays at The Himalayan Chester. Please review them carefully, confirming a booking constitutes acceptance of these terms."
       sections={sections}
     />
   );

@@ -38,7 +38,7 @@ const ContactForm = () => {
 
       {/*
         IMPORTANT: Do not change or remove the `name` attributes on the inputs
-        below — Zoho records submissions by field name. The hidden fields and
+        below. Zoho records submissions by field name. The hidden fields and
         the form `action` must also stay intact.
       */}
       <form

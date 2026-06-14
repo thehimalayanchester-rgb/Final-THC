@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,8 +10,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import type { Room } from "@/lib/rooms";
 import { WHATSAPP_URL } from "@/lib/site";
+import RoomImageCarousel from "@/components/common/RoomImageCarousel";
 
 const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
+  const images =
+    room.images && room.images.length > 0 ? room.images : [room.image];
+
   const specs = [
     { icon: faRulerCombined, label: "Size", value: room.size },
     { icon: faUsers, label: "Occupancy", value: room.occupancy },
@@ -28,21 +31,10 @@ const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
       transition={{ delay: (index % 3) * 0.15, duration: 0.6 }}
       className="flex flex-col w-full md:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] bg-linear-to-b from-[#0f161c] to-[#0b1013] border border-white/5 group hover:border-[#c5a367]/40 transition-all duration-500 shadow-xl hover:shadow-[0_25px_50px_-12px_rgba(197,163,103,0.18)]"
     >
-      {/* Image */}
+      {/* Image carousel */}
       <div className="relative aspect-[4/3] overflow-hidden">
-        <Image
-          src={room.image}
-          alt={room.name}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent" />
-        <div className="absolute top-4 right-4 bg-[#10171F]/90 backdrop-blur-md px-4 py-2 border-b-2 border-[#c5a367]">
-          <span className="text-white font-sans text-sm font-bold">
-            From ₹{room.offSeason}{" "}
-            <span className="text-gray-400 font-normal text-xs">/ night</span>
-          </span>
-        </div>
+        <RoomImageCarousel images={images} alt={room.name} />
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
       </div>
 
       {/* Content */}

@@ -26,7 +26,7 @@ const Rooms = () => {
           </div>
         </div>
 
-        {/* Rooms Grid — featured 3 on the home page */}
+        {/* Rooms Grid: featured 3 on the home page */}
         <div className="flex flex-wrap justify-center gap-8">
           {roomsData.slice(0, 3).map((room, i) => (
             <RoomCard key={room.id} room={room} index={i} />

@@ -31,7 +31,7 @@ const amenities = [
   },
   {
     title: "Wi-Fi",
-    desc: "Stay connected with complimentary high-speed internet throughout.",
+    desc: "Stay connected with complimentary & high-speed internet.",
     icon: faWifi,
   },
   {
@@ -41,7 +41,7 @@ const amenities = [
   },
   {
     title: "Spa",
-    desc: "Rejuvenating therapies and treatments to soothe body and mind.",
+    desc: "Rejuvenating therapies and treatments to soothe your body and mind.",
     icon: faSpa,
   },
   {
@@ -51,7 +51,7 @@ const amenities = [
   },
   {
     title: "Destination Wedding",
-    desc: "Celebrate your special day amid breathtaking Himalayan vistas.",
+    desc: "Celebrate your special moments amid breathtaking Himalayan vistas.",
     icon: faRing,
   },
   {
@@ -66,7 +66,7 @@ const amenities = [
   },
   {
     title: "Coffee Shop",
-    desc: "Artisanal coffee, teas and snacks served all day long.",
+    desc: "Freshly brewed coffee served round the clock, available 24x7 for you.",
     icon: faMugSaucer,
   },
 ];

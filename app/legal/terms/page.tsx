@@ -47,7 +47,7 @@ const sections: LegalSection[] = [
   {
     heading: "Guest Identification",
     paragraphs: [
-      "A valid photo identification is required for all guests at check-in — Passport, Driving Licence, Aadhaar Card or PAN Card. International guests must present a valid passport and visa.",
+      "A valid photo identification is required for all guests at check-in: Passport, Driving Licence, Aadhaar Card or PAN Card. International guests must present a valid passport and visa.",
     ],
   },
   {
@@ -89,7 +89,7 @@ export default function TermsPage() {
     <LegalShell
       title="Terms of Service"
       lastUpdated="June 14, 2026"
-      intro="These terms govern your booking and stay at The Himalayan Chester. Please read them carefully — they set out the rights and responsibilities of both you and us."
+      intro="These terms govern your booking and stay at The Himalayan Chester. Please read them carefully, they set out the rights and responsibilities of both you and us."
       sections={sections}
     />
   );

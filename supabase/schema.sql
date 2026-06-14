@@ -1,5 +1,5 @@
 -- ============================================================================
--- The Himalayan Chester — Supabase schema
+-- The Himalayan Chester - Supabase schema
 -- Run this in the Supabase SQL editor (it is idempotent / safe to re-run).
 -- ============================================================================
 
@@ -52,7 +52,7 @@ create trigger blogs_set_updated_at
 
 -- ---------- Row Level Security ----------------------------------------------
 -- Public can READ. All writes happen server-side with the service role key,
--- which BYPASSES RLS — so we deliberately add no anon insert/update/delete
+-- which BYPASSES RLS, so we deliberately add no anon insert/update/delete
 -- policies. This keeps the public anon key read-only.
 
 alter table public.gallery_images enable row level security;
@@ -124,7 +124,7 @@ values (
   <li>Take a guided walk through quiet, frost-covered trails.</li>
   <li>End the day beside a bonfire under a sky full of stars.</li>
 </ul>
-<blockquote>The mountains do not shout — they whisper. Winter is when you finally hear them.</blockquote>
+<blockquote>The mountains do not shout, they whisper. Winter is when you finally hear them.</blockquote>
 <p>At The Himalayan Chester, every winter stay is wrapped in warmth, heritage and the quiet luxury of the hills. We can''t wait to host you.</p>'
 )
 on conflict (slug) do nothing;

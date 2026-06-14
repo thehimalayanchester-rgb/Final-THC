@@ -14,7 +14,7 @@ import CTA from "@/components/home/CTA";
 export const metadata: Metadata = {
   title: "About Us | The Himalayan Chester",
   description:
-    "Discover the story of The Himalayan Chester — a heritage Pahari resort in Manali blending authentic mountain culture with modern luxury.",
+    "Discover the story of The Himalayan Chester, a heritage Pahari resort in Manali blending authentic mountain culture with modern luxury.",
 };
 
 const stats = [
@@ -43,7 +43,7 @@ const values = [
   {
     icon: faLeaf,
     title: "Mindful & Sustainable",
-    desc: "Rooted in nature, we tread lightly — honouring the land that hosts us.",
+    desc: "Rooted in nature, we tread lightly, honouring the land that hosts us.",
   },
 ];
 
@@ -134,7 +134,7 @@ export default function AboutPage() {
                 warmth of the hills.
               </p>
               <p>
-                Our promise is simple — to share the soul of the mountains with
+                Our promise is simple: to share the soul of the mountains with
                 you, and to make every stay feel like coming home.
               </p>
             </div>
@@ -196,23 +196,44 @@ export default function AboutPage() {
 
       {/* Founder quote */}
       <section className="py-16 md:py-24 px-6 md:px-10 lg:px-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <FontAwesomeIcon
-            icon={faQuoteLeft}
-            className="text-[#c5a367]/40 text-4xl md:text-5xl mb-8"
-          />
-          <p className="font-serif italic text-white text-2xl md:text-3xl lg:text-4xl leading-snug mb-10">
-            “We don&apos;t just offer a place to stay — we offer a piece of the
-            mountains, and a welcome that stays with you long after you leave.”
-          </p>
-          <div className="flex flex-col items-center">
-            <span className="block h-[2px] w-12 bg-[#c5a367] mb-5" />
-            <span className="font-serif text-white text-2xl">
-              Rajesh Thakur
-            </span>
-            <span className="font-sans text-[#c5a367] text-[12px] font-bold uppercase tracking-[3px] mt-1">
-              Founder &amp; Host
-            </span>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center gap-12 md:gap-14 lg:gap-20">
+            {/* Portrait */}
+            <div className="shrink-0">
+              <div className="relative w-56 h-72 sm:w-64 sm:h-80 mx-auto">
+                {/* Offset gold frame for a refined, respectful presentation */}
+                <span className="absolute -inset-3 border border-[#c5a367]/35 pointer-events-none" />
+                <Image
+                  src="/founder.png"
+                  alt="Tara Chand Thakur, Founder &amp; Host of The Himalayan Chester"
+                  fill
+                  quality={75}
+                  sizes="(min-width: 640px) 256px, 224px"
+                  className="object-cover object-top shadow-[0_20px_50px_rgba(0,0,0,0.45)]"
+                />
+              </div>
+            </div>
+
+            {/* Quote */}
+            <div className="text-center md:text-left">
+              <FontAwesomeIcon
+                icon={faQuoteLeft}
+                className="text-[#c5a367]/40 text-4xl md:text-5xl mb-6"
+              />
+              <p className="font-serif italic text-white text-xl sm:text-2xl md:text-3xl leading-snug mb-8">
+                “We don&apos;t just offer a place to stay, we offer a piece of the
+                mountains, and a welcome that stays with you long after you leave.”
+              </p>
+              <div className="flex flex-col items-center md:items-start">
+                <span className="block h-[2px] w-12 bg-[#c5a367] mb-5" />
+                <span className="font-serif text-white text-2xl">
+                  Tara Chand Thakur
+                </span>
+                <span className="font-sans text-[#c5a367] text-[12px] font-bold uppercase tracking-[3px] mt-1">
+                  Founder &amp; Host
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -9,7 +9,7 @@ import { WHATSAPP_URL } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Rooms & Suites | The Himalayan Chester",
   description:
-    "Explore our handpicked rooms and suites — from the Superior Rooms to the signature Himalayan Chester Suite, each crafted for an unforgettable Pahari stay.",
+    "Explore our handpicked rooms and suites, from the Superior Rooms to the signature Himalayan Chester Suite, each crafted for an unforgettable Pahari stay.",
 };
 
 export default function RoomsPage() {

@@ -27,7 +27,7 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Tailwind v4 no longer sets a pointer cursor on buttons — restore it so all
+/* Tailwind v4 no longer sets a pointer cursor on buttons, so restore it so all
    buttons, tabs and role="button" elements show the hand cursor on hover. */
 button:not(:disabled),
 [role="button"]:not(:disabled),
@@ -61,7 +61,7 @@ button:disabled {
   background: var(--gold-light);
 }
 
-/* Luxe gold gradient text — for emphasis spans in headings */
+/* Luxe gold gradient text, for emphasis spans in headings */
 .text-gold-gradient {
   background: linear-gradient(
     100deg,
@@ -229,6 +229,31 @@ button:disabled {
 }
 .animate-float-slow {
   animation: floatSlow 6s ease-in-out infinite;
+}
+
+/* Skeleton shimmer for lazy-loading gallery images */
+.skeleton {
+  background-color: rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(197, 163, 103, 0.12),
+    transparent
+  );
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Gentle bob for the scroll cue */

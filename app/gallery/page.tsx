@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Gallery | The Himalayan Chester",
   description:
-    "A visual journey through The Himalayan Chester — our rooms, dining, views and moments from the mountains.",
+    "A visual journey through The Himalayan Chester: our rooms, dining, views and moments from the mountains.",
 };
 
 export default async function GalleryPage() {

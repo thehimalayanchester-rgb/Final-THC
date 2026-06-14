@@ -7,7 +7,7 @@ import MenuExplorer from "@/components/menu/MenuExplorer";
 export const metadata: Metadata = {
   title: "Menu | The Himalayan Chester",
   description:
-    "Explore the multi-cuisine menu at The Himalayan Chester — breakfast, beverages, salads, soups, tandoori starters, Indian & Chinese mains, biryani, breads and desserts.",
+    "Explore the multi-cuisine menu at The Himalayan Chester: breakfast, beverages, salads, soups, tandoori starters, Indian & Chinese mains, biryani, breads and desserts.",
 };
 
 export default function MenuPage() {

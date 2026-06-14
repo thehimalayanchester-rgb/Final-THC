@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
 import {
   getSupabase,
   type GalleryImage,
@@ -29,6 +30,11 @@ const GalleryManager = ({ password }: { password: string }) => {
   const [editing, setEditing] = useState<string | null>(null);
   const [editTag, setEditTag] = useState("");
   const [editAlt, setEditAlt] = useState("");
+
+  // track which thumbnails have finished loading (for skeleton placeholders)
+  const [loaded, setLoaded] = useState<Set<string>>(new Set());
+  const markLoaded = (id: string) =>
+    setLoaded((prev) => (prev.has(id) ? prev : new Set(prev).add(id)));
 
   // tag management
   const [newTag, setNewTag] = useState("");
@@ -254,7 +260,7 @@ const GalleryManager = ({ password }: { password: string }) => {
             );
           })}
           {tags.length === 0 && (
-            <p className="text-gray-500 text-sm">No tags yet — add one above.</p>
+            <p className="text-gray-500 text-sm">No tags yet. Add one above.</p>
           )}
         </div>
       </div>
@@ -377,12 +383,23 @@ const GalleryManager = ({ password }: { password: string }) => {
               key={img.id}
               className="bg-[#11191f] border border-white/10 overflow-hidden"
             >
-              <div className="relative aspect-square">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative aspect-square bg-white/5">
+                {!loaded.has(img.id) && (
+                  <div className="skeleton absolute inset-0" />
+                )}
+                {/* Optimized thumbnail: Next serves a small resized WebP sized to
+                    the grid cell instead of the full-res original, and loads
+                    lazily, so the admin grid no longer hangs with many images. */}
+                <Image
                   src={img.image_url}
                   alt={img.alt || img.tag}
-                  className="w-full h-full object-cover"
+                  fill
+                  quality={60}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 33vw, 50vw"
+                  onLoad={() => markLoaded(img.id)}
+                  className={`object-cover transition-opacity duration-500 ${
+                    loaded.has(img.id) ? "opacity-100" : "opacity-0"
+                  }`}
                 />
               </div>
               <div className="p-3">

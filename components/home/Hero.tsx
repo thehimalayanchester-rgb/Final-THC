@@ -11,7 +11,7 @@ const Hero = () => {
       transition={{ duration: 1 }}
       className="grain relative h-[90vh] md:h-screen w-full flex flex-col items-center justify-center pt-26 lg:pt-44 overflow-hidden"
     >
-      {/* Background Image (poster / fallback behind the video) */}
+      {/* Background Image */}
       <motion.div
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -19,23 +19,13 @@ const Hero = () => {
         className="absolute inset-0 z-0"
       >
         <Image
-          src="/hero-Background.png"
+          src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/LB-7.png"
           alt="The Himalayan Chester Landscape"
           fill
           priority
           className="object-cover brightness-[0.5]"
         />
       </motion.div>
-
-      {/* Background Video (Vimeo, scaled to cover the hero) */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <iframe
-          src="https://player.vimeo.com/video/1201157266?background=1&autoplay=1&muted=1&loop=1&autopause=0&quality=1080p&dnt=1"
-          title="The Himalayan Chester"
-          allow="autoplay; fullscreen; picture-in-picture"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full brightness-[0.55]"
-        />
-      </div>
 
       {/* Cinematic gradient overlays for depth & legibility */}
       <div className="absolute inset-0 z-0 bg-linear-to-b from-black/60 via-black/20 to-[#0a0f12]" />

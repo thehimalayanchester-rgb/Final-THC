@@ -82,7 +82,7 @@ const About = () => {
           <div className="mt-12 flex items-center gap-6 border-l border-[#c5a367]/30 pl-6">
             <div className="flex flex-col">
               <span className="font-serif text-white text-2xl md:text-3xl">
-                Rajesh Thakur
+                Tara Chand Thakur
               </span>
               <span className="font-sans text-[#c5a367] text-[12px] font-bold uppercase tracking-[3px] mt-1">
                 Founder & Host

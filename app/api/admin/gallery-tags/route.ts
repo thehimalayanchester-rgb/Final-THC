@@ -74,7 +74,7 @@ export async function PATCH(req: Request) {
   return NextResponse.json({ tag: data });
 }
 
-// Delete a tag — and every image filed under it (storage + rows)
+// Delete a tag, and every image filed under it (storage + rows)
 export async function DELETE(req: Request) {
   const sb = guard(req);
   if (sb instanceof NextResponse) return sb;

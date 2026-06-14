@@ -16,7 +16,7 @@ const sections: LegalSection[] = [
     bullets: [
       "Name, email address, phone number and postal address",
       "Booking details such as check-in / check-out dates and guest count",
-      "Identification documents required at check-in as per law — Passport, Visa, nationality, Driving Licence, Aadhaar Card or PAN Card",
+      "Identification documents required at check-in as per law: Passport, Visa, nationality, Driving Licence, Aadhaar Card or PAN Card",
       "Payment information processed securely through our payment partners",
       "Any preferences or requests you share with us to personalise your stay",
     ],
@@ -35,7 +35,7 @@ const sections: LegalSection[] = [
   {
     heading: "Sharing of Information",
     paragraphs: [
-      "We do not sell your personal information. We may share it with trusted service providers who help us operate — such as payment processors, booking platforms and communication tools — strictly to deliver our services. We may also disclose information where required by law or to protect our rights and the safety of our guests.",
+      "We do not sell your personal information. We may share it with trusted service providers who help us operate, such as payment processors, booking platforms and communication tools, strictly to deliver our services. We may also disclose information where required by law or to protect our rights and the safety of our guests.",
     ],
   },
   {
