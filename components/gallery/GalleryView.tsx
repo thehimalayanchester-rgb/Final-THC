@@ -56,14 +56,21 @@ const GalleryView = ({ images }: { images: GalleryImage[] }) => {
             key={img.id}
             type="button"
             onClick={() => setLightbox(img)}
-            className="group relative mb-4 block w-full overflow-hidden border border-white/5"
+            className="group relative mb-4 block w-full overflow-hidden border border-white/5 bg-white/5"
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            {/* Optimized thumbnail: Next serves a small, resized WebP sized to the
+                column width (~380px on desktop) instead of the full-res original,
+                so the grid no longer downloads multi-MB images and hangs.
+                width/height 0 + sizes keeps the natural aspect ratio for masonry. */}
+            <Image
               src={img.image_url}
               alt={img.alt || img.tag}
-              loading="lazy"
-              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+              width={0}
+              height={0}
+              quality={60}
+              sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 92vw"
+              style={{ width: "100%", height: "auto" }}
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <span className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-300" />
             <span className="absolute bottom-3 left-3 opacity-0 group-hover:opacity-100 transition-opacity text-[10px] font-sans uppercase tracking-[2px] text-white bg-[#0d1317]/80 px-3 py-1 border-b-2 border-[#c5a367]">
