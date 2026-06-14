@@ -10,7 +10,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import ContactForm from "@/components/contact/ContactForm";
-import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
+import {
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+} from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact | The Himalayan Chester",
@@ -30,8 +35,8 @@ const details = [
   {
     icon: faPhone,
     title: "Phone",
-    lines: ["+91 98765 43210"],
-    href: "tel:+919876543210",
+    lines: [PHONE_DISPLAY],
+    href: `tel:${PHONE_TEL}`,
   },
   {
     icon: faEnvelope,

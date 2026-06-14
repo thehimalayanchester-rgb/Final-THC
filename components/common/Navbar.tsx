@@ -17,7 +17,12 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { WHATSAPP_URL, FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
+import {
+  WHATSAPP_URL,
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+} from "@/lib/site";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,7 +75,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faPhone} className="text-[#c5a367] w-3.5" />
-            <span>+91 98765 43210</span>
+            <span>{PHONE_DISPLAY}</span>
           </div>
         </div>
         <div className="flex items-center gap-6">

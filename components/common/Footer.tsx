@@ -10,7 +10,12 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
+import {
+  FACEBOOK_URL,
+  INSTAGRAM_URL,
+  PHONE_DISPLAY,
+  PHONE_TEL,
+} from "@/lib/site";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -114,10 +119,10 @@ const Footer = () => {
             <li className="flex items-center gap-4">
               <FontAwesomeIcon icon={faPhone} className="text-[#c5a367]" />
               <Link
-                href="tel:+919876543210"
+                href={`tel:${PHONE_TEL}`}
                 className="hover:text-white transition-colors"
               >
-                +91 98765 43210
+                {PHONE_DISPLAY}
               </Link>
             </li>
             <li className="flex items-center gap-4">
