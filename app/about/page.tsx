@@ -91,7 +91,7 @@ export default function AboutPage() {
               <span className="absolute -bottom-px -right-px w-10 h-10 border-b-2 border-r-2 border-[#c5a367]" />
               <div className="relative w-full h-full overflow-hidden">
                 <Image
-                  src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2014.png"
+                  src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/LB-7.png"
                   alt="The Himalayan Chester interior"
                   fill
                   className="object-cover"
@@ -221,8 +221,9 @@ export default function AboutPage() {
                 className="text-[#c5a367]/40 text-4xl md:text-5xl mb-6"
               />
               <p className="font-serif italic text-white text-xl sm:text-2xl md:text-3xl leading-snug mb-8">
-                “We don&apos;t just offer a place to stay, we offer a piece of the
-                mountains, and a welcome that stays with you long after you leave.”
+                “We don&apos;t just offer a place to stay, we offer a piece of
+                the mountains, and a welcome that stays with you long after you
+                leave.”
               </p>
               <div className="flex flex-col items-center md:items-start">
                 <span className="block h-[2px] w-12 bg-[#c5a367] mb-5" />
