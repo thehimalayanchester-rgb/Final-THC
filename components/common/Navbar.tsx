@@ -17,7 +17,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { WHATSAPP_URL } from "@/lib/site";
+import { WHATSAPP_URL, FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,12 +74,22 @@ const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <Link href="#" className="hover:text-[#c5a367] transition-colors">
+          <a
+            href={FACEBOOK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#c5a367] transition-colors"
+          >
             Facebook
-          </Link>
-          <Link href="#" className="hover:text-[#c5a367] transition-colors">
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#c5a367] transition-colors"
+          >
             Instagram
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -199,12 +209,24 @@ const Navbar = () => {
                 Book Now
               </a>
               <div className="flex justify-center gap-12 text-2xl text-gray-400">
-                <Link href="#">
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="hover:text-[#c5a367] transition-colors"
+                >
                   <FontAwesomeIcon icon={faFacebookF} />
-                </Link>
-                <Link href="#">
+                </a>
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="hover:text-[#c5a367] transition-colors"
+                >
                   <FontAwesomeIcon icon={faInstagram} />
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

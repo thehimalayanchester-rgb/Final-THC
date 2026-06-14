@@ -8,12 +8,9 @@ import {
   faEnvelope,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebookF,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import ContactForm from "@/components/contact/ContactForm";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact | The Himalayan Chester",
@@ -135,15 +132,20 @@ export default function ContactPage() {
 
             {/* Socials */}
             <div className="flex gap-4 mt-10">
-              {[faFacebookF, faInstagram, faTwitter].map((icon, i) => (
-                <Link
-                  key={i}
-                  href="#"
-                  aria-label="Social link"
+              {[
+                { icon: faFacebookF, href: FACEBOOK_URL, label: "Facebook" },
+                { icon: faInstagram, href: INSTAGRAM_URL, label: "Instagram" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={s.label}
                   className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#c5a367] hover:text-black hover:border-[#c5a367] transition-all duration-300"
                 >
-                  <FontAwesomeIcon icon={icon} className="text-sm" />
-                </Link>
+                  <FontAwesomeIcon icon={s.icon} className="text-sm" />
+                </a>
               ))}
             </div>
           </div>

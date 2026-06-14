@@ -14,3 +14,8 @@ export const WHATSAPP_MESSAGE =
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   WHATSAPP_MESSAGE
 )}`;
+
+// Social profiles.
+export const FACEBOOK_URL =
+  "https://www.facebook.com/profile.php?id=61590603009485";
+export const INSTAGRAM_URL = "https://www.instagram.com/thehimalayanchester/";

@@ -9,11 +9,8 @@ import {
   faEnvelope,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebookF,
-  faInstagram,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { FACEBOOK_URL, INSTAGRAM_URL } from "@/lib/site";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -47,14 +44,20 @@ const Footer = () => {
             Pahari culture and premium luxury, nestled in the pristine heights.
           </p>
           <div className="flex gap-4 mt-2">
-            {[faFacebookF, faInstagram, faTwitter].map((icon, i) => (
-              <Link
-                key={i}
-                href="#"
+            {[
+              { icon: faFacebookF, href: FACEBOOK_URL, label: "Facebook" },
+              { icon: faInstagram, href: INSTAGRAM_URL, label: "Instagram" },
+            ].map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={s.label}
                 className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-gray-400 hover:bg-[#c5a367] hover:text-black hover:border-[#c5a367] transition-all duration-300"
               >
-                <FontAwesomeIcon icon={icon} className="text-sm" />
-              </Link>
+                <FontAwesomeIcon icon={s.icon} className="text-sm" />
+              </a>
             ))}
           </div>
         </div>
