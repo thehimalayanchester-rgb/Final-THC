@@ -22,7 +22,8 @@ export const roomsData: Room[] = [
   {
     id: 1,
     name: "Superior Rooms",
-    image: "/room_dummy.png",
+    image:
+      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG_9348_premium.jpg",
     desc: "Comfortable, well-appointed rooms with warm Pahari interiors and serene valley views.",
     inclusions: [],
     seasonal: "10,000",
@@ -50,7 +51,8 @@ export const roomsData: Room[] = [
   {
     id: 2,
     name: "Honeymoon Suite",
-    image: "/room_dummy.png",
+    image:
+      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2011.png",
     desc: "A romantic retreat crafted for couples, complete with curated indulgences.",
     inclusions: ["Candlelight Dinner", "Cake", "Wine", "Flower Decorations"],
     seasonal: "15,000",
@@ -78,7 +80,8 @@ export const roomsData: Room[] = [
   {
     id: 3,
     name: "The Opus Suite",
-    image: "/room_dummy.png",
+    image:
+      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2010%20(1).png",
     desc: "An indulgent suite featuring a private jacuzzi and refined mountain luxury.",
     inclusions: ["Private Jacuzzi"],
     seasonal: "20,000",
@@ -106,7 +109,8 @@ export const roomsData: Room[] = [
   {
     id: 4,
     name: "The Sanctuary Suite",
-    image: "/room_dummy.png",
+    image:
+      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2014%20(1).png",
     desc: "A tranquil haven of space and elegance — your private sanctuary in the hills.",
     inclusions: [],
     seasonal: "20,000",
@@ -134,7 +138,8 @@ export const roomsData: Room[] = [
   {
     id: 5,
     name: "The Himalayan Chester Suite",
-    image: "/room_dummy.png",
+    image:
+      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2020.png",
     desc: "Our signature suite — the pinnacle of heritage luxury and panoramic Himalayan grandeur.",
     inclusions: [],
     seasonal: "30,000",

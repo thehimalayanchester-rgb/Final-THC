@@ -4,6 +4,7 @@ import Link from "next/link";
 import { roomsData } from "@/lib/rooms";
 import RoomCard from "@/components/common/RoomCard";
 import Amenities from "@/components/home/Amenities";
+import { WHATSAPP_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Rooms & Suites | The Himalayan Chester",
@@ -18,7 +19,7 @@ export default function RoomsPage() {
       <section className="grain relative h-[60vh] min-h-[420px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/hero-Background.png"
+            src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/LB-3.png"
             alt="The Himalayan Chester rooms and suites"
             fill
             priority
@@ -34,7 +35,8 @@ export default function RoomsPage() {
             <span className="eyebrow-rule">Our Accommodations</span>
           </span>
           <h1 className="font-serif text-white text-4xl md:text-6xl lg:text-7xl leading-tight mb-6">
-            Rooms &amp; <span className="italic text-gold-gradient">Suites</span>
+            Rooms &amp;{" "}
+            <span className="italic text-gold-gradient">Suites</span>
           </h1>
           <p className="font-sans text-gray-200 text-base md:text-lg max-w-2xl mx-auto leading-relaxed font-light">
             From cosy superior rooms to our signature heritage suite, every
@@ -79,12 +81,14 @@ export default function RoomsPage() {
             mountain escape. Reach out or book directly for the best rates.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/checkout"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block bg-[#c5a367] hover:bg-white text-black px-12 py-4 text-[14px] font-black uppercase tracking-[2px] transition-all duration-500 shadow-lg active:scale-[0.98]"
             >
               Book Now
-            </Link>
+            </a>
             <Link
               href="/contact"
               className="inline-block border border-[#c5a367]/40 px-12 py-4 text-[#c5a367] text-[14px] font-bold uppercase tracking-[2px] hover:bg-[#c5a367] hover:text-black transition-all duration-300"

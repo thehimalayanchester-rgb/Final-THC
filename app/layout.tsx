@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/common/Navbar";
 import SmoothScroll from "@/components/animations/SmoothScroll";
 import Footer from "@/components/common/Footer";
+import Preloader from "@/components/common/Preloader";
+import WhatsAppButton from "@/components/common/WhatsAppButton";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,6 +34,8 @@ export default function RootLayout({
         className="bg-[#0a0f12] text-white antialiased font-sans"
         suppressHydrationWarning={true}
       >
+        <Preloader />
+        <WhatsAppButton />
         <SmoothScroll>
           <Navbar />
           {children}

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMapMarkerAlt,
@@ -16,6 +17,9 @@ import {
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   const quickLinks = [
     { name: "About Us", href: "/about" },
@@ -61,20 +65,30 @@ const Footer = () => {
             Quick Links
           </h4>
           <ul className="flex flex-col gap-4">
-            {quickLinks.map((link) => (
-              <li key={link.name} className="group flex items-center gap-2">
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="text-[#c5a367] text-[10px] opacity-0 group-hover:opacity-100 transition-all"
-                />
-                <Link
-                  href={link.href}
-                  className="text-gray-400 font-sans hover:text-[#c5a367] transition-colors translate-x-[-12px] group-hover:translate-x-0 duration-300"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
+            {quickLinks.map((link) => {
+              const active = isActive(link.href);
+              return (
+                <li key={link.name} className="group flex items-center gap-2">
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className={`text-[#c5a367] text-[10px] transition-all ${
+                      active ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                    }`}
+                  />
+                  <Link
+                    href={link.href}
+                    aria-current={active ? "page" : undefined}
+                    className={`font-sans transition-colors duration-300 ${
+                      active
+                        ? "text-[#c5a367] translate-x-0"
+                        : "text-gray-400 hover:text-[#c5a367] -translate-x-3 group-hover:translate-x-0"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
 
@@ -106,10 +120,10 @@ const Footer = () => {
             <li className="flex items-center gap-4">
               <FontAwesomeIcon icon={faEnvelope} className="text-[#c5a367]" />
               <Link
-                href="mailto:stay@himalayanchester.com"
+                href="mailto:info@thehimalayanchester.com"
                 className="hover:text-white transition-colors"
               >
-                stay@himalayanchester.com
+                info@thehimalayanchester.com
               </Link>
             </li>
           </ul>
@@ -119,7 +133,7 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 font-sans text-sm">
         <p>© {currentYear} The Himalayan Chester. All Rights Reserved.</p>
-        <div className="flex gap-8">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
           <Link
             href="/legal/privacy-policy"
             className="hover:text-white transition-colors"
@@ -131,6 +145,12 @@ const Footer = () => {
             className="hover:text-white transition-colors"
           >
             Terms of Service
+          </Link>
+          <Link
+            href="/legal/payment-cancellation"
+            className="hover:text-white transition-colors"
+          >
+            Payment &amp; Cancellation
           </Link>
         </div>
       </div>

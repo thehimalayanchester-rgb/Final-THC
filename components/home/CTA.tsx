@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { WHATSAPP_URL } from "@/lib/site";
 import { useRef } from "react";
 
 const CTA = () => {
@@ -26,7 +26,7 @@ const CTA = () => {
         className="absolute inset-0 z-0 h-[120%] w-full"
       >
         <Image
-          src="/hero-Background.png"
+          src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2010.png"
           alt="Himalayan Mountains"
           fill
           className="object-cover brightness-[0.3]"
@@ -67,12 +67,14 @@ const CTA = () => {
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.5 }}
         >
-          <Link
-            href="/checkout"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-[#c5a367] hover:bg-white text-black px-10 py-5 text-[14px] md:text-[16px] font-black uppercase tracking-[3px] transition-all duration-500 shadow-2xl active:scale-95"
           >
             Book Your Stay Now
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { WHATSAPP_URL } from "@/lib/site";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPersonSwimming,
@@ -156,12 +156,14 @@ const Amenities = () => {
           transition={{ duration: 0.6 }}
           className="mt-12 md:mt-16 text-center"
         >
-          <Link
-            href="/checkout"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-[#c5a367] hover:bg-white text-black px-12 py-4 text-[14px] font-black uppercase tracking-[2px] transition-all duration-500 shadow-lg active:scale-[0.98]"
           >
             Book Now
-          </Link>
+          </a>
         </motion.div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   motion,
   AnimatePresence,
@@ -16,11 +17,16 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { WHATSAPP_URL } from "@/lib/site";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
 
   // Smart Scroll Animation: Hide on scroll down, show on scroll up
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -34,8 +40,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
     { name: "Rooms", href: "/rooms" },
     { name: "Menu", href: "/menu" },
+    { name: "Gallery", href: "/gallery" },
     { name: "Contact", href: "/contact" },
     { name: "Blog", href: "/blogs" },
   ];
@@ -92,28 +100,40 @@ const Navbar = () => {
 
         {/* Desktop Links with Stylish Hover */}
         <ul className="hidden lg:flex items-center gap-12 text-[16px] font-semibold tracking-[2.5px] uppercase font-sans">
-          {navLinks.map((link) => (
-            <li key={link.name} className="relative group">
-              <Link
-                href={link.href}
-                className="hover:text-[#c5a367] transition-all duration-300"
-              >
-                {link.name}
-              </Link>
-              {/* Next-gen Hover Underline */}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#c5a367] transition-all duration-300 group-hover:w-full" />
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(link.href);
+            return (
+              <li key={link.name} className="relative group">
+                <Link
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`transition-all duration-300 ${
+                    active ? "text-[#c5a367]" : "hover:text-[#c5a367]"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+                {/* Active / hover underline */}
+                <span
+                  className={`absolute -bottom-1 left-0 h-[2px] bg-[#c5a367] transition-all duration-300 ${
+                    active ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                />
+              </li>
+            );
+          })}
         </ul>
 
         {/* Desktop CTA & Mobile Toggle */}
         <div className="flex items-center gap-6">
-          <Link
-            href="/checkout"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="hidden sm:block bg-[#c5a367] hover:bg-white hover:text-black text-black px-10 py-4 rounded-none text-[15px] font-black tracking-[2px] uppercase transition-all duration-500 font-sans shadow-[0_0_20px_rgba(197,163,103,0.3)]"
           >
             Book Now
-          </Link>
+          </a>
 
           <button
             className="lg:hidden text-[#c5a367] text-3xl p-2"
@@ -155,7 +175,12 @@ const Navbar = () => {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="hover:text-[#c5a367] active:text-[#c5a367]"
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                    className={
+                      isActive(link.href)
+                        ? "text-[#c5a367]"
+                        : "hover:text-[#c5a367] active:text-[#c5a367]"
+                    }
                   >
                     {link.name}
                   </Link>
@@ -164,13 +189,15 @@ const Navbar = () => {
             </ul>
 
             <div className="mt-auto pb-10 flex flex-col gap-8">
-              <Link
-                href="/checkout"
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="bg-[#c5a367] text-black text-center py-5 text-xl rounded-none font-black uppercase tracking-widest"
               >
                 Book Now
-              </Link>
+              </a>
               <div className="flex justify-center gap-12 text-2xl text-gray-400">
                 <Link href="#">
                   <FontAwesomeIcon icon={faFacebookF} />

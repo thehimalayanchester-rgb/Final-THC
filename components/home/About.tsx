@@ -21,7 +21,7 @@ const About = () => {
             <span className="absolute -bottom-px -right-px w-10 h-10 border-b-2 border-r-2 border-[#c5a367]" />
             <div className="relative w-full h-full overflow-hidden">
               <Image
-                src="/about-section.png"
+                src="https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG_9267_premium.jpg"
                 alt="The Himalayan Chester Interior"
                 fill
                 priority

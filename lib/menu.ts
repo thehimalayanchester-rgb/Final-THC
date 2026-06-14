@@ -86,6 +86,17 @@ export const menu: MenuCategory[] = [
     ],
   },
   {
+    id: "cafe",
+    title: "Café",
+    note: "Taxes as applicable",
+    defaultTag: "veg",
+    items: [
+      { name: "Cappuccino", price: "165", icon: "coffee" },
+      { name: "Espresso", price: "140", icon: "coffee" },
+      { name: "Latte", price: "165", icon: "coffee" },
+    ],
+  },
+  {
     id: "hot-beverages",
     title: "Hot Beverages",
     defaultTag: "veg",

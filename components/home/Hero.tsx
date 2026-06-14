@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { WHATSAPP_URL } from "@/lib/site";
 
 const Hero = () => {
   return (
@@ -11,7 +11,7 @@ const Hero = () => {
       transition={{ duration: 1 }}
       className="grain relative h-[90vh] md:h-screen w-full flex flex-col items-center justify-center pt-26 lg:pt-44 overflow-hidden"
     >
-      {/* Background Image Container */}
+      {/* Background Image (poster / fallback behind the video) */}
       <motion.div
         initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
@@ -26,6 +26,16 @@ const Hero = () => {
           className="object-cover brightness-[0.5]"
         />
       </motion.div>
+
+      {/* Background Video (Vimeo, scaled to cover the hero) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <iframe
+          src="https://player.vimeo.com/video/1201157266?background=1&autoplay=1&muted=1&loop=1&autopause=0&quality=1080p&dnt=1"
+          title="The Himalayan Chester"
+          allow="autoplay; fullscreen; picture-in-picture"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[177.78vh] min-w-full h-[56.25vw] min-h-full brightness-[0.55]"
+        />
+      </div>
 
       {/* Cinematic gradient overlays for depth & legibility */}
       <div className="absolute inset-0 z-0 bg-linear-to-b from-black/60 via-black/20 to-[#0a0f12]" />
@@ -68,12 +78,14 @@ const Hero = () => {
           transition={{ delay: 1.5, duration: 0.8 }}
           className="mt-10"
         >
-          <Link
-            href="/checkout"
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block bg-[#c5a367] hover:bg-white text-black px-10 py-5 text-[14px] md:text-[16px] font-black uppercase tracking-[3px] transition-all duration-500 shadow-2xl active:scale-95"
           >
             Book Now
-          </Link>
+          </a>
         </motion.div>
       </div>
     </motion.section>
