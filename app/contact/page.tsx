@@ -7,6 +7,7 @@ import {
   faPhone,
   faEnvelope,
   faClock,
+  faDiamondTurnRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import ContactForm from "@/components/contact/ContactForm";
@@ -157,6 +158,77 @@ export default function ContactPage() {
 
           {/* Form (client component: posts to Zoho via hidden iframe + thank-you popup) */}
           <ContactForm />
+        </div>
+      </section>
+
+      {/* Map */}
+      <section className="px-6 md:px-10 lg:px-20 pb-20 md:pb-28">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-10">
+            <span className="font-sans text-[#c5a367] uppercase tracking-[4px] text-xs md:text-sm font-bold mb-3 block">
+              <span className="eyebrow-rule">Find Us</span>
+            </span>
+            <h2 className="font-serif text-white text-3xl md:text-4xl lg:text-5xl leading-tight">
+              Visit The{" "}
+              <span className="italic text-gold-gradient">Himalayan Chester</span>
+            </h2>
+          </div>
+
+          <div className="relative border border-white/10 bg-[#11191f] p-1.5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.6)]">
+            {/* Gold corner accent */}
+            <span className="pointer-events-none absolute -top-px -left-px z-20 h-10 w-10 border-t-2 border-l-2 border-[#c5a367]" />
+            <span className="pointer-events-none absolute -bottom-px -right-px z-20 h-10 w-10 border-b-2 border-r-2 border-[#c5a367]" />
+
+            <div className="relative overflow-hidden">
+              {/* Dark-themed map (filter tints the embed to match the site) */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3375.4348127559606!2d77.18345607638014!3d32.21945691226984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390489cbbf1dc1fb%3A0x3967b549ce8d5d63!2sThe%20himalayan%20chester!5e0!3m2!1sen!2sin!4v1781455390112!5m2!1sen!2sin"
+                title="The Himalayan Chester location on Google Maps"
+                width="600"
+                height="450"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                style={{
+                  filter:
+                    "invert(0.9) hue-rotate(180deg) brightness(0.95) contrast(0.88) saturate(0.8)",
+                }}
+                className="block w-full h-[380px] md:h-[480px] border-0"
+              />
+
+              {/* Subtle vignette so the map edges blend into the dark theme
+                  (kept out of pointer events so the map stays draggable) */}
+              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_120px_40px_rgba(10,15,18,0.55)]" />
+
+              {/* Floating info card */}
+              <div className="pointer-events-none absolute bottom-4 left-4 right-4 sm:right-auto sm:max-w-xs">
+                <div className="pointer-events-auto bg-[#0a0f12]/85 backdrop-blur-md border border-white/10 border-l-2 border-l-[#c5a367] p-5 shadow-2xl">
+                  <h3 className="font-serif text-white text-lg mb-2">
+                    The Himalayan Chester
+                  </h3>
+                  <p className="flex items-start gap-2.5 text-gray-300 font-sans text-[13px] leading-relaxed mb-4">
+                    <FontAwesomeIcon
+                      icon={faLocationDot}
+                      className="text-[#c5a367] text-sm mt-0.5 shrink-0"
+                    />
+                    <span>
+                      Mall Road, Near Old Temple, Manali, Himachal Pradesh,
+                      India 175131
+                    </span>
+                  </p>
+                  <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=32.21945691226984,77.18345607638014&destination_place_id=ChIJ-8Edv8uJBDkRY12NzknU52U"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#c5a367] hover:bg-white text-black px-5 py-2.5 text-[11px] font-black uppercase tracking-[1.5px] transition-colors duration-300"
+                  >
+                    <FontAwesomeIcon icon={faDiamondTurnRight} />
+                    Get Directions
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
