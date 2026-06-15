@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "Discover the story of The Himalayan Chester, a heritage Pahari resort in Manali blending authentic mountain culture with modern luxury.",
 };
-
+//just a comment
 const stats = [
   { value: "25+", label: "Years of Hospitality" },
   { value: "5", label: "Curated Room Types" },
