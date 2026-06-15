@@ -19,6 +19,10 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
   WHATSAPP_MESSAGE
 )}`;
 
+// Full postal address (single source of truth).
+export const ADDRESS =
+  "The Himalayan Chester, Khasra No. 142, 143, Muhal Gadherani, Simsa, Manali, Manali, Gadherni, Himachal Pradesh 175131";
+
 // Social profiles.
 export const FACEBOOK_URL =
   "https://www.facebook.com/profile.php?id=61590603009485";

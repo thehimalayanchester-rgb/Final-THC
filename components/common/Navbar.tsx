@@ -22,6 +22,7 @@ import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
   PHONE_DISPLAY,
+  ADDRESS,
 } from "@/lib/site";
 
 const Navbar = () => {
@@ -71,7 +72,7 @@ const Navbar = () => {
               icon={faMapMarkerAlt}
               className="text-[#c5a367] w-3.5"
             />
-            <span>Mall Road, Manali, HP, India</span>
+            <span>{ADDRESS}</span>
           </div>
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faPhone} className="text-[#c5a367] w-3.5" />

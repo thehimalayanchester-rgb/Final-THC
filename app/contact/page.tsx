@@ -16,6 +16,7 @@ import {
   INSTAGRAM_URL,
   PHONE_DISPLAY,
   PHONE_TEL,
+  ADDRESS,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -28,10 +29,7 @@ const details = [
   {
     icon: faLocationDot,
     title: "Address",
-    lines: [
-      "Mall Road, Near Old Temple,",
-      "Manali, Himachal Pradesh, India 175131",
-    ],
+    lines: [ADDRESS],
   },
   {
     icon: faPhone,
@@ -212,12 +210,12 @@ export default function ContactPage() {
                       className="text-[#c5a367] text-sm mt-0.5 shrink-0"
                     />
                     <span>
-                      Mall Road, Near Old Temple, Manali, Himachal Pradesh,
-                      India 175131
+                      Khasra No. 142, 143, Muhal Gadherani, Simsa, Manali,
+                      Manali, Gadherni, Himachal Pradesh 175131
                     </span>
                   </p>
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=32.21945691226984,77.18345607638014&destination_place_id=ChIJ-8Edv8uJBDkRY12NzknU52U"
+                    href="https://www.google.com/maps/dir//The+himalayan+chester,+Khasra+no+142,+143,+Muhal+Gadherani,+Simsa,+manali,+Manali,+Gadherni,+Himachal+Pradesh+175131/@26.3721451,88.3759429,7z/data=!4m8!4m7!1m0!1m5!1m1!1s0x390489cbbf1dc1fb:0x3967b549ce8d5d63!2m2!1d77.186031!2d32.2194524?entry=ttu&g_ep=EgoyMDI2MDYxMC4wIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 bg-[#c5a367] hover:bg-white text-black px-5 py-2.5 text-[11px] font-black uppercase tracking-[1.5px] transition-colors duration-300"

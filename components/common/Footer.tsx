@@ -15,6 +15,7 @@ import {
   INSTAGRAM_URL,
   PHONE_DISPLAY,
   PHONE_TEL,
+  ADDRESS,
 } from "@/lib/site";
 
 const Footer = () => {
@@ -111,10 +112,7 @@ const Footer = () => {
                 icon={faMapMarkerAlt}
                 className="text-[#c5a367] mt-1"
               />
-              <span>
-                Mall Road, Near Old Temple, Manali, Himachal Pradesh, India
-                175131
-              </span>
+              <span>{ADDRESS}</span>
             </li>
             <li className="flex items-center gap-4">
               <FontAwesomeIcon icon={faPhone} className="text-[#c5a367]" />

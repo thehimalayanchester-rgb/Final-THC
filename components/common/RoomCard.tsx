@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,12 +10,13 @@ import {
   faMountainSun,
 } from "@fortawesome/free-solid-svg-icons";
 import type { Room } from "@/lib/rooms";
-import { WHATSAPP_URL } from "@/lib/site";
 import RoomImageCarousel from "@/components/common/RoomImageCarousel";
+import RoomDetailsModal from "@/components/common/RoomDetailsModal";
 
 const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
   const images =
     room.images && room.images.length > 0 ? room.images : [room.image];
+  const [showDetails, setShowDetails] = useState(false);
 
   const specs = [
     { icon: faRulerCombined, label: "Size", value: room.size },
@@ -136,16 +138,21 @@ const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
           </div>
         </div>
 
-        {/* Book Now → WhatsApp */}
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        {/* Show Details → opens modal */}
+        <button
+          type="button"
+          onClick={() => setShowDetails(true)}
           className="block w-full text-center bg-[#c5a367] hover:bg-white text-black py-4 text-[12px] font-black uppercase tracking-[2px] transition-all duration-500 shadow-lg active:scale-[0.98]"
         >
-          Book Now
-        </a>
+          Show Details
+        </button>
       </div>
+
+      <RoomDetailsModal
+        room={room}
+        open={showDetails}
+        onClose={() => setShowDetails(false)}
+      />
     </motion.div>
   );
 };
