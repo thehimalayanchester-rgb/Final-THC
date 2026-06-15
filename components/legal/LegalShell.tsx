@@ -28,7 +28,7 @@ const LegalShell = ({
             alt="The Himalayan Chester"
             fill
             priority
-            className="object-cover brightness-[0.4]"
+            className="object-cover brightness-[0.6]"
           />
         </div>
         <div className="absolute inset-0 z-0 bg-linear-to-b from-black/60 via-black/30 to-[#0a0f12]" />

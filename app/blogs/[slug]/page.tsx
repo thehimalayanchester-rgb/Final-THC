@@ -39,7 +39,7 @@ export default async function BlogPostPage({
               alt={blog.title}
               fill
               priority
-              className="object-cover brightness-[0.4]"
+              className="object-cover brightness-[0.6]"
             />
           ) : (
             <Image
@@ -47,7 +47,7 @@ export default async function BlogPostPage({
               alt={blog.title}
               fill
               priority
-              className="object-cover brightness-[0.4]"
+              className="object-cover brightness-[0.6]"
             />
           )}
         </div>

@@ -23,7 +23,7 @@ const Hero = () => {
           alt="The Himalayan Chester Landscape"
           fill
           priority
-          className="object-cover brightness-[0.5]"
+          className="object-cover brightness-[0.65]"
         />
       </motion.div>
 

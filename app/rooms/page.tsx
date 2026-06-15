@@ -23,7 +23,7 @@ export default function RoomsPage() {
             alt="The Himalayan Chester rooms and suites"
             fill
             priority
-            className="object-cover brightness-[0.45]"
+            className="object-cover brightness-[0.65]"
           />
         </div>
         {/* Gradient overlays */}

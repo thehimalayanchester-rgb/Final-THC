@@ -21,7 +21,7 @@ export default function MenuPage() {
             alt="The Himalayan Chester dining"
             fill
             priority
-            className="object-cover brightness-[0.45]"
+            className="object-cover brightness-[0.65]"
           />
         </div>
         <div className="absolute inset-0 z-0 bg-linear-to-b from-black/60 via-black/25 to-[#0a0f12]" />

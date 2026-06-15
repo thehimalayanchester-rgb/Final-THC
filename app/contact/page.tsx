@@ -61,7 +61,7 @@ export default function ContactPage() {
             alt="The Himalayan Chester"
             fill
             priority
-            className="object-cover brightness-[0.4]"
+            className="object-cover brightness-[0.6]"
           />
         </div>
         <div className="absolute inset-0 z-0 bg-linear-to-b from-black/60 via-black/30 to-[#0a0f12]" />
@@ -210,8 +210,8 @@ export default function ContactPage() {
                       className="text-[#c5a367] text-sm mt-0.5 shrink-0"
                     />
                     <span>
-                      Khasra No. 142, 143, Muhal Gadherani, Simsa, Manali,
-                      Manali, Gadherni, Himachal Pradesh 175131
+                      Mahul Gardening, Village Simsa, Manali, Distt. Kullu
+                      (H.P.)
                     </span>
                   </p>
                   <a
