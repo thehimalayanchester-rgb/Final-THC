@@ -221,7 +221,7 @@ export default function AboutPage() {
                 className="text-[#c5a367]/40 text-4xl md:text-5xl mb-6"
               />
               <p className="font-serif italic text-white text-xl sm:text-2xl md:text-3xl leading-snug mb-8">
-                “We don&apos;t just offer a place to stay, we offer a piece of
+                “We don&apos;t just offer a place to stay, we offer a peace of
                 the mountains, and a welcome that stays with you long after you
                 leave.”
               </p>
