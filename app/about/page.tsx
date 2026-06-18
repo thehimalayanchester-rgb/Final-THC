@@ -100,7 +100,7 @@ export default function AboutPage() {
             </div>
             <div className="absolute bottom-[-20px] right-[-10px] md:bottom-[-30px] md:right-[-30px] bg-[#0d1317] border-l-4 border-[#c5a367] p-6 md:p-8 shadow-2xl z-10 w-[200px] md:w-[260px]">
               <h3 className="font-serif text-[#c5a367] text-3xl md:text-4xl mb-2">
-                25+
+                36+
               </h3>
               <p className="font-sans text-white text-[10px] md:text-[12px] font-bold uppercase tracking-[2px] leading-tight">
                 Years of Preserving Pahari Heritage
