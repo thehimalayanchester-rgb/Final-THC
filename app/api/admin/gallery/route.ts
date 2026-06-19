@@ -91,26 +91,34 @@ export async function PATCH(req: Request) {
   return NextResponse.json({ image: data });
 }
 
-// Delete an image (storage object + row)
+// Delete one or more images (storage objects + rows)
 export async function DELETE(req: Request) {
   const sb = guard(req);
   if (sb instanceof NextResponse) return sb;
 
-  const { id } = await req.json();
-  if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
+  const body = await req.json();
+  const ids: string[] = Array.isArray(body.ids)
+    ? body.ids.filter(Boolean)
+    : body.id
+    ? [body.id]
+    : [];
+  if (!ids.length)
+    return NextResponse.json({ error: "Missing id(s)" }, { status: 400 });
 
-  const { data: row } = await sb
+  const { data: rows } = await sb
     .from("gallery_images")
     .select("storage_path")
-    .eq("id", id)
-    .maybeSingle();
+    .in("id", ids);
 
-  if (row?.storage_path) {
-    await sb.storage.from(GALLERY_BUCKET).remove([row.storage_path]);
+  const paths = (rows ?? [])
+    .map((r) => r.storage_path)
+    .filter(Boolean) as string[];
+  if (paths.length) {
+    await sb.storage.from(GALLERY_BUCKET).remove(paths);
   }
 
-  const { error } = await sb.from("gallery_images").delete().eq("id", id);
+  const { error } = await sb.from("gallery_images").delete().in("id", ids);
   if (error)
     return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, deleted: ids.length });
 }

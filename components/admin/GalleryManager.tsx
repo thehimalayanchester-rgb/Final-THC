@@ -31,6 +31,16 @@ const GalleryManager = ({ password }: { password: string }) => {
   const [editTag, setEditTag] = useState("");
   const [editAlt, setEditAlt] = useState("");
 
+  // multi-select / bulk delete
+  const [selected, setSelected] = useState<Set<string>>(new Set());
+  const toggleSelected = (id: string) =>
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+
   // track which thumbnails have finished loading (for skeleton placeholders)
   const [loaded, setLoaded] = useState<Set<string>>(new Set());
   const markLoaded = (id: string) =>
@@ -147,9 +157,36 @@ const GalleryManager = ({ password }: { password: string }) => {
       headers: { ...headers, "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
-    if (res.ok) load();
-    else setMsg({ type: "err", text: "Delete failed" });
+    if (res.ok) {
+      setSelected((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+      load();
+    } else setMsg({ type: "err", text: "Delete failed" });
   };
+
+  const removeSelected = async () => {
+    const ids = Array.from(selected);
+    if (!ids.length) return;
+    if (!confirm(`Delete ${ids.length} selected image(s)? This cannot be undone.`))
+      return;
+    const res = await fetch("/api/admin/gallery", {
+      method: "DELETE",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
+    if (res.ok) {
+      setSelected(new Set());
+      setMsg({ type: "ok", text: `Deleted ${ids.length} image(s).` });
+      load();
+    } else setMsg({ type: "err", text: "Bulk delete failed" });
+  };
+
+  const allSelected = images.length > 0 && selected.size === images.length;
+  const toggleSelectAll = () =>
+    setSelected(allSelected ? new Set() : new Set(images.map((i) => i.id)));
 
   const saveEdit = async (id: string) => {
     const res = await fetch("/api/admin/gallery", {
@@ -374,19 +411,52 @@ const GalleryManager = ({ password }: { password: string }) => {
 
       {/* Existing images */}
       <div>
-        <h3 className="font-serif text-white text-xl mb-5">
-          Gallery ({images.length})
-        </h3>
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
+          <h3 className="font-serif text-white text-xl">
+            Gallery ({images.length})
+          </h3>
+          {images.length > 0 && (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={toggleSelectAll}
+                className="text-gray-300 hover:text-[#c5a367] text-[11px] uppercase tracking-[1px]"
+              >
+                {allSelected ? "Clear selection" : "Select all"}
+              </button>
+              {selected.size > 0 && (
+                <button
+                  type="button"
+                  onClick={removeSelected}
+                  className="bg-red-600 hover:bg-red-500 text-white px-4 py-2 text-[11px] font-bold uppercase tracking-[1px] transition-colors"
+                >
+                  Delete selected ({selected.size})
+                </button>
+              )}
+            </div>
+          )}
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {images.map((img) => (
             <div
               key={img.id}
-              className="bg-[#11191f] border border-white/10 overflow-hidden"
+              className={`bg-[#11191f] border overflow-hidden transition-colors ${
+                selected.has(img.id) ? "border-[#c5a367]" : "border-white/10"
+              }`}
             >
               <div className="relative aspect-square bg-white/5">
                 {!loaded.has(img.id) && (
                   <div className="skeleton absolute inset-0" />
                 )}
+                <label className="absolute top-2 left-2 z-10 flex items-center justify-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={selected.has(img.id)}
+                    onChange={() => toggleSelected(img.id)}
+                    className="w-5 h-5 accent-[#c5a367] cursor-pointer"
+                    aria-label="Select image"
+                  />
+                </label>
                 {/* Optimized thumbnail: Next serves a small resized WebP sized to
                     the grid cell instead of the full-res original, and loads
                     lazily, so the admin grid no longer hangs with many images. */}
