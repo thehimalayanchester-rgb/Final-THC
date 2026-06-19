@@ -12,6 +12,43 @@ const field =
 const label =
   "block text-[#c5a367] text-[11px] font-bold uppercase tracking-[1.5px] mb-2";
 
+// Downscale + re-encode an image in the browser so we upload a web-sized file
+// (a few hundred KB) instead of a multi-MB camera original. Falls back to the
+// untouched file if anything goes wrong.
+const MAX_DIM = 1920;
+const compressImage = (file: File): Promise<File> =>
+  new Promise((resolve) => {
+    if (!file.type.startsWith("image/") || file.type === "image/gif")
+      return resolve(file);
+    const url = URL.createObjectURL(file);
+    const img = new window.Image();
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const scale = Math.min(1, MAX_DIM / Math.max(img.width, img.height));
+      if (scale === 1 && file.size < 600_000) return resolve(file);
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.round(img.width * scale);
+      canvas.height = Math.round(img.height * scale);
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return resolve(file);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(
+        (blob) => {
+          if (!blob || blob.size >= file.size) return resolve(file);
+          const name = file.name.replace(/\.[^.]+$/, "") + ".webp";
+          resolve(new File([blob], name, { type: "image/webp" }));
+        },
+        "image/webp",
+        0.82
+      );
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      resolve(file);
+    };
+    img.src = url;
+  });
+
 const GalleryManager = ({ password }: { password: string }) => {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [tags, setTags] = useState<GalleryTag[]>([]);
@@ -131,11 +168,13 @@ const GalleryManager = ({ password }: { password: string }) => {
     if (!files.length)
       return setMsg({ type: "err", text: "Add at least one image." });
     setBusy(true);
-    setMsg(null);
+    setMsg({ type: "ok", text: "Optimizing images…" });
+    const compressed = await Promise.all(files.map(compressImage));
+    setMsg({ type: "ok", text: `Uploading ${compressed.length} image(s)…` });
     const fd = new FormData();
     fd.append("tag", tag.trim());
     fd.append("alt", alt.trim());
-    files.forEach((f) => fd.append("files", f));
+    compressed.forEach((f) => fd.append("files", f));
     const res = await fetch("/api/admin/gallery", {
       method: "POST",
       headers,
@@ -144,7 +183,7 @@ const GalleryManager = ({ password }: { password: string }) => {
     const json = await res.json();
     setBusy(false);
     if (!res.ok) return setMsg({ type: "err", text: json.error || "Upload failed" });
-    setMsg({ type: "ok", text: `Uploaded ${files.length} image(s).` });
+    setMsg({ type: "ok", text: `Uploaded ${compressed.length} image(s).` });
     setFiles([]);
     setAlt("");
     load();

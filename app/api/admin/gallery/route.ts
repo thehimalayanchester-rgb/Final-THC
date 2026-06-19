@@ -32,22 +32,21 @@ export async function POST(req: Request) {
   if (!files.length)
     return NextResponse.json({ error: "No images provided" }, { status: 400 });
 
-  const created = [];
-  for (const file of files) {
+  // Upload every file concurrently instead of one-at-a-time. With many images
+  // this turns a sum-of-latencies wait into roughly the slowest single upload.
+  const slug = slugify(tag);
+  const uploadOne = async (file: File, i: number) => {
     const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
-    const path = `${slugify(tag)}/${Date.now()}-${Math.random()
+    const path = `${slug}/${Date.now()}-${i}-${Math.random()
       .toString(36)
       .slice(2, 8)}.${ext}`;
     const bytes = new Uint8Array(await file.arrayBuffer());
 
-    const up = await sb.storage
-      .from(GALLERY_BUCKET)
-      .upload(path, bytes, {
-        contentType: file.type || "image/jpeg",
-        upsert: false,
-      });
-    if (up.error)
-      return NextResponse.json({ error: up.error.message }, { status: 500 });
+    const up = await sb.storage.from(GALLERY_BUCKET).upload(path, bytes, {
+      contentType: file.type || "image/jpeg",
+      upsert: false,
+    });
+    if (up.error) throw new Error(up.error.message);
 
     const url = sb.storage.from(GALLERY_BUCKET).getPublicUrl(path).data
       .publicUrl;
@@ -57,10 +56,18 @@ export async function POST(req: Request) {
       .insert({ tag, image_url: url, storage_path: path, alt: alt || tag })
       .select()
       .single();
-    if (ins.error)
-      return NextResponse.json({ error: ins.error.message }, { status: 500 });
+    if (ins.error) throw new Error(ins.error.message);
+    return ins.data;
+  };
 
-    created.push(ins.data);
+  let created;
+  try {
+    created = await Promise.all(files.map(uploadOne));
+  } catch (e) {
+    return NextResponse.json(
+      { error: e instanceof Error ? e.message : "Upload failed" },
+      { status: 500 }
+    );
   }
 
   // Keep the tags table in sync (so a brand-new tag becomes manageable).
