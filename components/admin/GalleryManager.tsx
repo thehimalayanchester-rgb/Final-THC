@@ -78,6 +78,9 @@ const GalleryManager = ({ password }: { password: string }) => {
       return next;
     });
 
+  // filter the gallery grid by tag
+  const [filterTag, setFilterTag] = useState("");
+
   // track which thumbnails have finished loading (for skeleton placeholders)
   const [loaded, setLoaded] = useState<Set<string>>(new Set());
   const markLoaded = (id: string) =>
@@ -223,9 +226,43 @@ const GalleryManager = ({ password }: { password: string }) => {
     } else setMsg({ type: "err", text: "Bulk delete failed" });
   };
 
-  const allSelected = images.length > 0 && selected.size === images.length;
+  // Images shown in the grid, narrowed by the tag filter.
+  const visibleImages = filterTag
+    ? images.filter((i) => i.tag === filterTag)
+    : images;
+
+  const allSelected =
+    visibleImages.length > 0 &&
+    visibleImages.every((i) => selected.has(i.id));
   const toggleSelectAll = () =>
-    setSelected(allSelected ? new Set() : new Set(images.map((i) => i.id)));
+    setSelected((prev) => {
+      const next = new Set(prev);
+      if (allSelected) visibleImages.forEach((i) => next.delete(i.id));
+      else visibleImages.forEach((i) => next.add(i.id));
+      return next;
+    });
+
+  // Delete every image under the filtered tag in one shot.
+  const removeFilteredTag = async () => {
+    const ids = visibleImages.map((i) => i.id);
+    if (!ids.length) return;
+    if (
+      !confirm(
+        `Delete all ${ids.length} image(s) tagged "${filterTag}"? This cannot be undone.`
+      )
+    )
+      return;
+    const res = await fetch("/api/admin/gallery", {
+      method: "DELETE",
+      headers: { ...headers, "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    });
+    if (res.ok) {
+      setSelected(new Set());
+      setMsg({ type: "ok", text: `Deleted ${ids.length} image(s).` });
+      load();
+    } else setMsg({ type: "err", text: "Delete failed" });
+  };
 
   const saveEdit = async (id: string) => {
     const res = await fetch("/api/admin/gallery", {
@@ -452,10 +489,33 @@ const GalleryManager = ({ password }: { password: string }) => {
       <div>
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
           <h3 className="font-serif text-white text-xl">
-            Gallery ({images.length})
+            Gallery ({filterTag ? `${visibleImages.length} of ${images.length}` : images.length})
           </h3>
           {images.length > 0 && (
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Filter the grid down to a single tag */}
+              <select
+                aria-label="Filter by tag"
+                value={filterTag}
+                onChange={(e) => setFilterTag(e.target.value)}
+                className="bg-[#0a0f12] border border-white/10 py-2 px-3 text-white text-xs focus:outline-none focus:border-[#c5a367]"
+              >
+                <option value="">All tags</option>
+                {tags.map((t) => (
+                  <option key={t.id} value={t.name}>
+                    {t.name} ({images.filter((i) => i.tag === t.name).length})
+                  </option>
+                ))}
+              </select>
+              {filterTag && (
+                <button
+                  type="button"
+                  onClick={() => setFilterTag("")}
+                  className="text-gray-400 hover:text-[#c5a367] text-[11px] uppercase tracking-[1px]"
+                >
+                  Clear
+                </button>
+              )}
               <button
                 type="button"
                 onClick={toggleSelectAll}
@@ -463,6 +523,15 @@ const GalleryManager = ({ password }: { password: string }) => {
               >
                 {allSelected ? "Clear selection" : "Select all"}
               </button>
+              {filterTag && visibleImages.length > 0 && (
+                <button
+                  type="button"
+                  onClick={removeFilteredTag}
+                  className="border border-red-500/50 text-red-400 hover:bg-red-500/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[1px] transition-colors"
+                >
+                  Delete all &ldquo;{filterTag}&rdquo;
+                </button>
+              )}
               {selected.size > 0 && (
                 <button
                   type="button"
@@ -475,8 +544,13 @@ const GalleryManager = ({ password }: { password: string }) => {
             </div>
           )}
         </div>
+        {visibleImages.length === 0 && (
+          <p className="text-gray-500 text-sm">
+            No images{filterTag ? ` tagged "${filterTag}"` : ""}.
+          </p>
+        )}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-          {images.map((img) => (
+          {visibleImages.map((img) => (
             <div
               key={img.id}
               className={`bg-[#11191f] border overflow-hidden transition-colors ${
