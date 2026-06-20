@@ -21,6 +21,9 @@ const ptSerif = PT_Serif({
 export const metadata: Metadata = {
   title: "The Himalayan Chester | Luxury Stay in Manali",
   description: "Book your perfect stay at The Himalayan Chester, Manali.",
+  verification: {
+    google: "290NUw0zquZhkAxjt2SFYvGzjNU0zN_aGSRqHALeXUM",
+  },
 };
 
 export default function RootLayout({
