@@ -108,6 +108,19 @@ const Testimonials = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Write a Review CTA */}
+        <div className="text-center mt-16">
+          <a
+            href="https://www.google.com/search?hl=en-IN&gl=in&q=Khasra+no+142,+143,+The+himalayan+chester,+Muhal+Gadherani,+Simsa,+manali,+Manali,+Gadherni,+Himachal+Pradesh+175131&ludocid=4136474111365700963&lsig=AB86z5WpOEZhGzpbGKDpFuRzPfiE#lrd=0x390489cbbf1dc1fb:0x3967b549ce8d5d63,3"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-[#c5a367] hover:bg-white text-black px-8 py-4 text-[13px] font-bold uppercase tracking-[2px] transition-colors"
+          >
+            <FontAwesomeIcon icon={faStar} />
+            Write a Review
+          </a>
+        </div>
       </div>
     </section>
   );
