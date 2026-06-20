@@ -12,7 +12,7 @@ import {
 import CTA from "@/components/home/CTA";
 
 export const metadata: Metadata = {
-  title: "About Us | The Himalayan Chester",
+  title: "About Us",
   description:
     "Discover the story of The Himalayan Chester, a heritage Pahari resort in Manali blending authentic mountain culture with modern luxury.",
 };

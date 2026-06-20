@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | The Himalayan Chester",
+  title: "Terms of Service",
   description:
     "The terms and conditions governing bookings and stays at The Himalayan Chester.",
 };

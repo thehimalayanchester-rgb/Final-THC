@@ -11,9 +11,10 @@ export async function generateMetadata({
 }: PageProps<"/blogs/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
-  if (!blog) return { title: "Post Not Found | The Himalayan Chester" };
+  if (!blog) return { title: "Post Not Found" };
   return {
-    title: blog.meta_title || `${blog.title} | The Himalayan Chester`,
+    // A custom meta_title is used verbatim; otherwise the title template adds the brand.
+    title: blog.meta_title ? { absolute: blog.meta_title } : blog.title,
     description: blog.meta_description || undefined,
     openGraph: blog.featured_image
       ? { images: [{ url: blog.featured_image }] }

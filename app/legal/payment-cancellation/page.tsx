@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Payment & Cancellation Policy | The Himalayan Chester",
+  title: "Payment & Cancellation Policy",
   description:
     "Payment, cancellation, check-in/out, identification, occupancy and house policies for stays at The Himalayan Chester.",
 };

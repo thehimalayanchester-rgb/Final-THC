@@ -7,7 +7,7 @@ import GalleryView from "@/components/gallery/GalleryView";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Gallery | The Himalayan Chester",
+  title: "Gallery",
   description:
     "A visual journey through The Himalayan Chester: our rooms, dining, views and moments from the mountains.",
 };

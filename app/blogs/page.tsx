@@ -6,7 +6,7 @@ import { getBlogs } from "@/lib/supabase";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog | The Himalayan Chester",
+  title: "Blog",
   description:
     "Stories, guides and inspiration from the Himalayas: travel tips, local culture and life at The Himalayan Chester.",
 };

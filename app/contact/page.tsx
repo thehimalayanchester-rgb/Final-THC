@@ -20,7 +20,7 @@ import {
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Contact | The Himalayan Chester",
+  title: "Contact",
   description:
     "Get in touch with The Himalayan Chester, Manali. Send us a message or reach us by phone or email for bookings and enquiries.",
 };

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | The Himalayan Chester",
+  title: "Privacy Policy",
   description:
     "How The Himalayan Chester collects, uses, and protects your personal information.",
 };

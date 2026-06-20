@@ -1,5 +1,13 @@
 // Central place for contact / booking details used across the site.
 
+// Canonical site origin (no trailing slash). Override per-environment with
+// NEXT_PUBLIC_SITE_URL so previews/staging don't emit production URLs.
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.thehimalayanchester.com"
+).replace(/\/+$/, "");
+
+export const SITE_NAME = "The Himalayan Chester";
+
 export const CONTACT_EMAIL = "info@thehimalayanchester.com";
 
 // WhatsApp number in international format (91 = India) for wa.me links.
