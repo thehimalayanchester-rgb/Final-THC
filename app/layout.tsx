@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Inter, PT_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/common/Navbar";
@@ -134,6 +135,21 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${ptSerif.variable}`}>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-J1M9VTNSZQ"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-J1M9VTNSZQ');
+          `}
+        </Script>
+      </head>
       <body
         className="bg-[#0a0f12] text-white antialiased font-sans"
         suppressHydrationWarning={true}
