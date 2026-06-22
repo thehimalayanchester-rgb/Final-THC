@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
+export const metadata: Metadata = pageMeta({
+  title: "Privacy Policy | Himalayan Chester",
   description:
-    "How The Himalayan Chester collects, uses, and protects your personal information.",
-};
+    "Read how The Himalayan Chester, Manali collects, uses and protects your personal information when you browse our website or book a stay with us.",
+  path: "/legal/privacy-policy",
+});
+
+const breadcrumb = breadcrumbLd([
+  { name: "Home", path: "/" },
+  { name: "Privacy Policy", path: "/legal/privacy-policy" },
+]);
 
 const sections: LegalSection[] = [
   {
@@ -66,11 +74,14 @@ const sections: LegalSection[] = [
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalShell
-      title="Privacy Policy"
-      lastUpdated="June 14, 2026"
-      intro="Your privacy matters to us. This policy explains what information The Himalayan Chester collects, how we use it, and the choices you have. By using our website or services, you agree to the practices described below."
-      sections={sections}
-    />
+    <>
+      <JsonLd data={breadcrumb} />
+      <LegalShell
+        title="Privacy Policy"
+        lastUpdated="June 14, 2026"
+        intro="Your privacy matters to us. This policy explains what information The Himalayan Chester collects, how we use it, and the choices you have. By using our website or services, you agree to the practices described below."
+        sections={sections}
+      />
+    </>
   );
 }

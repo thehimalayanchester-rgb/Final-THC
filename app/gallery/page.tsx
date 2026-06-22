@@ -3,20 +3,29 @@ import Image from "next/image";
 import Link from "next/link";
 import { getGalleryImages } from "@/lib/supabase";
 import GalleryView from "@/components/gallery/GalleryView";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Gallery",
+export const metadata: Metadata = pageMeta({
+  title: "Resort Photo Gallery | Himalayan Chester",
   description:
-    "A visual journey through The Himalayan Chester: our rooms, dining, views and moments from the mountains.",
-};
+    "Explore photos of The Himalayan Chester, Manali — luxury rooms, suites, fine dining, mountain views and moments from our Himalayan boutique resort.",
+  path: "/gallery",
+});
+
+const gallerySchema = breadcrumbLd([
+  { name: "Home", path: "/" },
+  { name: "Gallery", path: "/gallery" },
+]);
 
 export default async function GalleryPage() {
   const images = await getGalleryImages();
 
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={gallerySchema} />
       {/* Header Banner */}
       <section className="grain relative h-[48vh] min-h-[320px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">

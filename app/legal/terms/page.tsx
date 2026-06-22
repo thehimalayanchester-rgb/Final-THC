@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Service",
+export const metadata: Metadata = pageMeta({
+  title: "Terms of Service | Himalayan Chester",
   description:
-    "The terms and conditions governing bookings and stays at The Himalayan Chester.",
-};
+    "The terms and conditions that govern bookings, payments and stays at The Himalayan Chester, our luxury boutique resort in Manali, Himachal Pradesh.",
+  path: "/legal/terms",
+});
+
+const breadcrumb = breadcrumbLd([
+  { name: "Home", path: "/" },
+  { name: "Terms of Service", path: "/legal/terms" },
+]);
 
 const sections: LegalSection[] = [
   {
@@ -86,11 +94,14 @@ const sections: LegalSection[] = [
 
 export default function TermsPage() {
   return (
-    <LegalShell
-      title="Terms of Service"
-      lastUpdated="June 14, 2026"
-      intro="These terms govern your booking and stay at The Himalayan Chester. Please read them carefully, they set out the rights and responsibilities of both you and us."
-      sections={sections}
-    />
+    <>
+      <JsonLd data={breadcrumb} />
+      <LegalShell
+        title="Terms of Service"
+        lastUpdated="June 14, 2026"
+        intro="These terms govern your booking and stay at The Himalayan Chester. Please read them carefully, they set out the rights and responsibilities of both you and us."
+        sections={sections}
+      />
+    </>
   );
 }

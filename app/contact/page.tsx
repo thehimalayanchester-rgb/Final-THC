@@ -11,19 +11,46 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import ContactForm from "@/components/contact/ContactForm";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
   PHONE_DISPLAY,
   PHONE_TEL,
   ADDRESS,
+  CONTACT_EMAIL,
+  SITE_URL,
+  SITE_NAME,
 } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Contact",
+export const metadata: Metadata = pageMeta({
+  title: "Contact The Himalayan Chester, Manali",
   description:
-    "Get in touch with The Himalayan Chester, Manali. Send us a message or reach us by phone or email for bookings and enquiries.",
-};
+    "Contact The Himalayan Chester, Manali for bookings and enquiries. Reach us by phone, WhatsApp or email, or find us in Simsa near Manali, Himachal.",
+  path: "/contact",
+});
+
+const contactSchema = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact The Himalayan Chester",
+    url: `${SITE_URL}/contact`,
+    about: {
+      "@type": "LodgingBusiness",
+      "@id": `${SITE_URL}/#lodging`,
+      name: SITE_NAME,
+      telephone: PHONE_TEL,
+      email: CONTACT_EMAIL,
+      address: { "@type": "PostalAddress", streetAddress: ADDRESS },
+    },
+  },
+];
 
 const details = [
   {
@@ -53,6 +80,7 @@ const details = [
 export default function ContactPage() {
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={contactSchema} />
       {/* Header Banner */}
       <section className="grain relative h-[48vh] min-h-[320px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">

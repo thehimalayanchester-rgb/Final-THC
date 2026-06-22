@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import LegalShell, { type LegalSection } from "@/components/legal/LegalShell";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Payment & Cancellation Policy",
+export const metadata: Metadata = pageMeta({
+  title: "Cancellation & Refund Policy | Manali",
   description:
-    "Payment, cancellation, check-in/out, identification, occupancy and house policies for stays at The Himalayan Chester.",
-};
+    "Payment, cancellation, check-in, identification and occupancy policies for your stay at The Himalayan Chester, the luxury boutique resort in Manali.",
+  path: "/legal/payment-cancellation",
+});
+
+const breadcrumb = breadcrumbLd([
+  { name: "Home", path: "/" },
+  { name: "Payment & Cancellation Policy", path: "/legal/payment-cancellation" },
+]);
 
 const sections: LegalSection[] = [
   {
@@ -68,11 +76,14 @@ const sections: LegalSection[] = [
 
 export default function PaymentCancellationPage() {
   return (
-    <LegalShell
-      title="Payment & Cancellation Policy"
-      lastUpdated="June 14, 2026"
-      intro="The following policies apply to all bookings and stays at The Himalayan Chester. Please review them carefully, confirming a booking constitutes acceptance of these terms."
-      sections={sections}
-    />
+    <>
+      <JsonLd data={breadcrumb} />
+      <LegalShell
+        title="Payment & Cancellation Policy"
+        lastUpdated="June 14, 2026"
+        intro="The following policies apply to all bookings and stays at The Himalayan Chester. Please review them carefully, confirming a booking constitutes acceptance of these terms."
+        sections={sections}
+      />
+    </>
   );
 }

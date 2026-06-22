@@ -4,17 +4,50 @@ import Link from "next/link";
 import { roomsData } from "@/lib/rooms";
 import RoomCard from "@/components/common/RoomCard";
 import Amenities from "@/components/home/Amenities";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd, faqLd } from "@/lib/seo";
 import { WHATSAPP_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Rooms & Suites",
+export const metadata: Metadata = pageMeta({
+  title: "Luxury Rooms & Suites in Manali",
   description:
-    "Explore our handpicked rooms and suites, from the Superior Rooms to the signature Himalayan Chester Suite, each crafted for an unforgettable Pahari stay.",
-};
+    "Discover luxury rooms and suites at The Himalayan Chester, Manali — from cosy Superior Rooms to signature suites with valley views and a private jacuzzi.",
+  path: "/rooms",
+});
+
+const roomsSchema = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Rooms & Suites", path: "/rooms" },
+  ]),
+  faqLd([
+    {
+      q: "What room and suite categories are available?",
+      a: "The Himalayan Chester offers Superior Rooms, the Honeymoon Suite, the Opus Suite, the Sanctuary Suite and the signature Himalayan Chester Suite.",
+    },
+    {
+      q: "Do the rooms have mountain or valley views?",
+      a: "Yes. Most rooms and suites open to garden, valley or panoramic Himalayan views, with large windows and private balconies in select suites.",
+    },
+    {
+      q: "Are suites with a private jacuzzi available?",
+      a: "Yes. The Opus Suite features a private jacuzzi, and our premium suites include luxury en-suite bathrooms and lounge seating areas.",
+    },
+    {
+      q: "What is included with a Honeymoon Suite booking?",
+      a: "The Honeymoon Suite includes a candlelight dinner, celebratory cake, a bottle of wine and floral decorations for a romantic Manali getaway.",
+    },
+    {
+      q: "How do I check room rates and book a stay?",
+      a: "Rates vary by season. Contact us by phone or WhatsApp for current tariffs and availability, and we'll confirm your booking directly.",
+    },
+  ]),
+];
 
 export default function RoomsPage() {
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={roomsSchema} />
       {/* Page Header Banner */}
       <section className="grain relative h-[60vh] min-h-[420px] w-full flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">

@@ -10,12 +10,51 @@ import {
   faQuoteLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import CTA from "@/components/home/CTA";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd, faqLd } from "@/lib/seo";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "About Us",
+export const metadata: Metadata = pageMeta({
+  title: "About The Himalayan Chester, Manali",
   description:
-    "Discover the story of The Himalayan Chester, a heritage Pahari resort in Manali blending authentic mountain culture with modern luxury.",
-};
+    "Discover the story of The Himalayan Chester — a heritage Pahari resort in Manali blending authentic mountain culture with refined modern luxury.",
+  path: "/about",
+});
+
+const aboutSchema = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    name: "About The Himalayan Chester",
+    url: `${SITE_URL}/about`,
+    description:
+      "The story and philosophy behind The Himalayan Chester, a luxury heritage Pahari resort in Manali.",
+    about: {
+      "@type": "LodgingBusiness",
+      "@id": `${SITE_URL}/#lodging`,
+      name: SITE_NAME,
+    },
+  },
+  // "Why choose us" expressed as an FAQ so it's eligible for rich results.
+  faqLd([
+    {
+      q: "Why choose The Himalayan Chester in Manali?",
+      a: "It combines authentic Pahari heritage architecture, panoramic Himalayan views, fine multi-cuisine dining, spacious suites and warm personalised hospitality.",
+    },
+    {
+      q: "What makes the location special?",
+      a: "Set in serene Simsa near Manali, the resort offers tranquil valley and mountain views while staying close to Mall Road, Hadimba Temple and Solang Valley.",
+    },
+    {
+      q: "What experiences does the resort offer?",
+      a: "Guests enjoy curated mountain experiences, romantic honeymoon packages, fine dining and restful suites designed for an authentic yet luxurious Himalayan stay.",
+    },
+  ]),
+];
 //just a comment
 const stats = [
   { value: "25+", label: "Years of Hospitality" },
@@ -50,6 +89,7 @@ const values = [
 export default function AboutPage() {
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={aboutSchema} />
       {/* Header Banner */}
       <section className="grain relative h-[55vh] min-h-[360px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">

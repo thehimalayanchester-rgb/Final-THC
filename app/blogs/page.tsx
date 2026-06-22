@@ -2,14 +2,33 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { getBlogs } from "@/lib/supabase";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Blog",
+export const metadata: Metadata = pageMeta({
+  title: "Manali Travel Blog | Himalayan Chester",
   description:
-    "Stories, guides and inspiration from the Himalayas: travel tips, local culture and life at The Himalayan Chester.",
-};
+    "Travel tips, local culture and Himalayan stories from The Himalayan Chester, Manali — your guide to exploring the mountains and planning a memorable stay.",
+  path: "/blogs",
+});
+
+const blogIndexSchema = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Blog", path: "/blogs" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} Blog`,
+    url: `${SITE_URL}/blogs`,
+    description:
+      "Travel tips, local culture and Himalayan stories from The Himalayan Chester, Manali.",
+  },
+];
 
 function excerpt(html: string, len = 150) {
   const text = html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim();
@@ -21,6 +40,7 @@ export default async function BlogsPage() {
 
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={blogIndexSchema} />
       {/* Header Banner */}
       <section className="grain relative h-[48vh] min-h-[320px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">

@@ -3,16 +3,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { menu } from "@/lib/menu";
 import MenuExplorer from "@/components/menu/MenuExplorer";
+import JsonLd from "@/components/common/JsonLd";
+import { pageMeta, breadcrumbLd } from "@/lib/seo";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Menu",
+export const metadata: Metadata = pageMeta({
+  title: "Multi-Cuisine Restaurant in Manali",
   description:
-    "Explore the multi-cuisine menu at The Himalayan Chester: breakfast, beverages, salads, soups, tandoori starters, Indian & Chinese mains, biryani, breads and desserts.",
-};
+    "Savour the multi-cuisine menu at The Himalayan Chester, Manali — Indian, Chinese and tandoori dishes, biryani, fresh breads, soups, desserts and more.",
+  path: "/menu",
+});
+
+const menuSchema = [
+  breadcrumbLd([
+    { name: "Home", path: "/" },
+    { name: "Menu", path: "/menu" },
+  ]),
+  {
+    "@context": "https://schema.org",
+    "@type": "Menu",
+    name: "The Himalayan Chester Restaurant Menu",
+    url: `${SITE_URL}/menu`,
+    inLanguage: "en",
+    hasMenuSection: menu.map((section) => ({
+      "@type": "MenuSection",
+      name: section.title,
+      hasMenuItem: section.items.map((item) => ({
+        "@type": "MenuItem",
+        name: item.name,
+      })),
+    })),
+    provider: {
+      "@type": "Restaurant",
+      "@id": `${SITE_URL}/#lodging`,
+      name: SITE_NAME,
+      servesCuisine: ["Indian", "Chinese", "Tandoori", "Continental"],
+    },
+  },
+];
 
 export default function MenuPage() {
   return (
     <main className="bg-[#0a0f12]">
+      <JsonLd data={menuSchema} />
       {/* Header Banner */}
       <section className="grain relative h-[52vh] min-h-[340px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
