@@ -78,7 +78,7 @@ export const roomsData: Room[] = [
       "Tea & Coffee Maker",
       "Daily Housekeeping",
     ],
-    gallery: ["/room_dummy.png", "/about-section.png", "/hero-Background.png"],
+    gallery: ["/room_dummy.webp", "/about-section.webp", "/hero-Background.png"],
   },
   {
     id: 2,
@@ -116,7 +116,7 @@ export const roomsData: Room[] = [
       "Smart TV",
       "Premium Toiletries",
     ],
-    gallery: ["/room_dummy.png", "/about-section.png", "/hero-Background.png"],
+    gallery: ["/room_dummy.webp", "/about-section.webp", "/hero-Background.png"],
   },
   {
     id: 3,
@@ -153,7 +153,7 @@ export const roomsData: Room[] = [
       "Smart TV",
       "Centrally Room Heating",
     ],
-    gallery: ["/room_dummy.png", "/about-section.png", "/hero-Background.png"],
+    gallery: ["/room_dummy.webp", "/about-section.webp", "/hero-Background.png"],
   },
   {
     id: 4,
@@ -192,7 +192,7 @@ export const roomsData: Room[] = [
       "Smart TV",
       "Centrally Room Heating",
     ],
-    gallery: ["/room_dummy.png", "/about-section.png", "/hero-Background.png"],
+    gallery: ["/room_dummy.webp", "/about-section.webp", "/hero-Background.png"],
   },
   {
     id: 5,
@@ -240,7 +240,7 @@ export const roomsData: Room[] = [
       "Smart TV",
       "Premium Toiletries",
     ],
-    gallery: ["/room_dummy.png", "/about-section.png", "/hero-Background.png"],
+    gallery: ["/room_dummy.webp", "/about-section.webp", "/hero-Background.png"],
   },
 ];
 

@@ -30,7 +30,7 @@ export default async function GalleryPage() {
       <section className="grain relative h-[48vh] min-h-[320px] w-full flex items-end overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/about-section.png"
+            src="/about-section.webp"
             alt="The Himalayan Chester gallery"
             fill
             priority

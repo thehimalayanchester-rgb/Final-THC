@@ -244,7 +244,7 @@ export default function AboutPage() {
                 {/* Offset gold frame for a refined, respectful presentation */}
                 <span className="absolute -inset-3 border border-[#c5a367]/35 pointer-events-none" />
                 <Image
-                  src="/founder.PNG"
+                  src="/founder.webp"
                   alt="Tara Chand Thakur, Founder &amp; Host of The Himalayan Chester"
                   fill
                   quality={75}
