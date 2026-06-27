@@ -21,6 +21,13 @@ const nextConfig: NextConfig = {
     ];
   },
   images: {
+    // Serve images directly from /public (and remote sources) without going
+    // through Vercel's Image Optimization endpoint. That endpoint is returning
+    // HTTP 402 (plan image-optimization quota exceeded), which was breaking
+    // every next/image on the site. Raw assets serve fine, so bypass the
+    // optimizer to restore visibility. Trade-off: no on-the-fly resize/webp,
+    // so keep source images reasonably compressed.
+    unoptimized: true,
     // Allowlist of quality levels the optimizer may produce (required in Next 16).
     // 60 is used for gallery thumbnails to keep them light; 75 is the default.
     qualities: [60, 75],
