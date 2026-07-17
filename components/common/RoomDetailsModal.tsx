@@ -12,6 +12,7 @@ import {
   faMountainSun,
   faChevronLeft,
   faChevronRight,
+  faMagnifyingGlassPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import type { Room } from "@/lib/rooms";
 import { WHATSAPP_URL } from "@/lib/site";
@@ -28,17 +29,24 @@ const RoomDetailsModal = ({
   const images =
     room.images && room.images.length > 0 ? room.images : [room.image];
   const [active, setActive] = useState(0);
+  const [zoomed, setZoomed] = useState(false);
 
   // Reset to the first image each time the modal opens.
   useEffect(() => {
-    if (open) setActive(0);
+    if (open) {
+      setActive(0);
+      setZoomed(false);
+    }
   }, [open]);
 
   // Close on Escape + lock background scroll while open.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") {
+        if (zoomed) setZoomed(false);
+        else onClose();
+      }
     };
     document.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -47,7 +55,7 @@ const RoomDetailsModal = ({
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [open, onClose]);
+  }, [open, onClose, zoomed]);
 
   const specs = [
     { icon: faRulerCombined, label: "Size", value: room.size },
@@ -95,15 +103,31 @@ const RoomDetailsModal = ({
               {/* Gallery */}
               <div className="p-4 sm:p-5 lg:p-6 lg:border-r border-white/5">
                 {/* Main image */}
-                <div className="relative aspect-[4/3] overflow-hidden bg-white/5">
-                  <Image
-                    key={images[active]}
-                    src={images[active]}
-                    alt={`${room.name} — photo ${active + 1}`}
-                    fill
-                    sizes="(min-width: 1024px) 480px, 100vw"
-                    className="object-cover"
-                  />
+                <div className="group/main relative aspect-[4/3] overflow-hidden bg-white/5">
+                  <button
+                    type="button"
+                    aria-label="Zoom image"
+                    onClick={() => setZoomed(true)}
+                    className="absolute inset-0 z-[5] cursor-zoom-in"
+                  >
+                    <Image
+                      key={images[active]}
+                      src={images[active]}
+                      alt={`${room.name} — photo ${active + 1}`}
+                      fill
+                      sizes="(min-width: 1024px) 480px, 100vw"
+                      className="object-cover transition-transform duration-700 group-hover/main:scale-[1.03]"
+                    />
+                  </button>
+
+                  {/* Zoom hint button */}
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute top-3 left-3 z-10 flex items-center gap-1.5 bg-[#0a0f12]/70 backdrop-blur-sm border border-white/15 text-white text-[11px] font-sans px-2.5 py-1.5 opacity-0 group-hover/main:opacity-100 transition-opacity duration-300"
+                  >
+                    <FontAwesomeIcon icon={faMagnifyingGlassPlus} className="text-[11px]" />
+                    Zoom
+                  </span>
 
                   {images.length > 1 && (
                     <>
@@ -283,6 +307,80 @@ const RoomDetailsModal = ({
                 </a>
               </div>
             </div>
+
+            {/* Full-screen zoom lightbox */}
+            <AnimatePresence>
+              {zoomed && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  onClick={() => setZoomed(false)}
+                  role="dialog"
+                  aria-modal="true"
+                  aria-label={`${room.name} — enlarged photo`}
+                  className="fixed inset-0 z-[130] flex items-center justify-center p-4 sm:p-8 bg-black/95 cursor-zoom-out"
+                >
+                  <button
+                    type="button"
+                    aria-label="Close zoom"
+                    onClick={() => setZoomed(false)}
+                    className="absolute top-4 right-4 z-20 w-10 h-10 flex items-center justify-center bg-[#0a0f12]/70 backdrop-blur-sm border border-white/15 text-white hover:bg-[#c5a367] hover:text-black hover:border-[#c5a367] transition-all duration-300"
+                  >
+                    <FontAwesomeIcon icon={faXmark} />
+                  </button>
+
+                  <motion.div
+                    key={images[active]}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.97 }}
+                    transition={{ type: "spring", damping: 28, stiffness: 220 }}
+                    onClick={(e) => e.stopPropagation()}
+                    className="relative w-full h-full max-w-6xl"
+                  >
+                    <Image
+                      src={images[active]}
+                      alt={`${room.name} — enlarged photo ${active + 1}`}
+                      fill
+                      sizes="100vw"
+                      className="object-contain"
+                    />
+                  </motion.div>
+
+                  {images.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        aria-label="Previous image"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          prevImg();
+                        }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center bg-[#0a0f12]/60 backdrop-blur-sm border border-white/15 text-white hover:bg-[#c5a367] hover:text-black hover:border-[#c5a367] transition-all duration-300"
+                      >
+                        <FontAwesomeIcon icon={faChevronLeft} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Next image"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          nextImg();
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 flex items-center justify-center bg-[#0a0f12]/60 backdrop-blur-sm border border-white/15 text-white hover:bg-[#c5a367] hover:text-black hover:border-[#c5a367] transition-all duration-300"
+                      >
+                        <FontAwesomeIcon icon={faChevronRight} />
+                      </button>
+                      <span className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 bg-[#0a0f12]/75 text-white text-[12px] font-sans px-3 py-1.5">
+                        {active + 1} / {images.length}
+                      </span>
+                    </>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         </motion.div>
       )}

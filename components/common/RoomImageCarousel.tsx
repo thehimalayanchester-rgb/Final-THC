@@ -17,13 +17,19 @@ import "swiper/css";
 const RoomImageCarousel = ({
   images,
   alt,
+  index = 0,
 }: {
   images: string[];
   alt: string;
+  index?: number;
 }) => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
   const sizes = "(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw";
+
+  // Stagger autoplay per card so the carousels don't all slide in sync.
+  // Base 3500ms + a per-card offset spreads them out across the grid.
+  const autoplayDelay = 3500 + (index % 4) * 900;
 
   // Single image: no carousel needed.
   if (images.length <= 1) {
@@ -44,7 +50,7 @@ const RoomImageCarousel = ({
         modules={[Autoplay]}
         onSwiper={(s) => (swiperRef.current = s)}
         loop
-        autoplay={{ delay: 3500, disableOnInteraction: false }}
+        autoplay={{ delay: autoplayDelay, disableOnInteraction: false }}
         speed={800}
         className="h-full w-full"
       >
