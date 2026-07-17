@@ -39,6 +39,13 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
+        // Reviewer profile photos served by Google (Google Reviews).
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
         protocol: "https",
         hostname: "*.supabase.co",
         port: "",

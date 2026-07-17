@@ -10,27 +10,31 @@ import {
   faMountain,
 } from "@fortawesome/free-solid-svg-icons";
 
+// Verbatim 5-star Google reviews for The Himalayan Chester.
 const reviews = [
   {
     id: 1,
-    name: "Priya Sharma",
-    location: "DELHI, INDIA",
-    image: "https://i.pravatar.cc/150?u=priya", // Dummy image
-    text: "An absolutely magical stay. The wooden architecture and warm earthy tones made us feel instantly relaxed. The staff treated us like royalty and the views were breathtaking.",
+    name: "Diveshwar Thakur",
+    location: "GOOGLE REVIEW",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjXFLA01fqrCCiS78o5QNx8iw751GtwbxpR7LedLpXOfuOCQpdcl=s120-c-rp-mo-br100",
+    text: "I had an amazing stay at Himalayan Chester Hotel. The rooms were clean, spacious, and very comfortable, with beautiful mountain views. The staff were extremely friendly, polite, and always ready to help, making us feel welcome throughout our stay. The location is excellent — peaceful yet conveniently close to major attractions.",
   },
   {
     id: 2,
-    name: "Vikram Mehta",
-    location: "MUMBAI, INDIA",
-    image: "https://i.pravatar.cc/150?u=vikram", // Dummy image
-    text: "The perfect escape from the city. Authentic Pahari vibes combined with modern luxury. Waking up to the mountain sunrise from our suite was the highlight of our trip.",
+    name: "aditya mahant",
+    location: "GOOGLE REVIEW",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjUrtNdK-xjQd35eG74NAy9IaFLJXgcAAC-wIl4-l5NP4cP8oO0A=s120-c-rp-mo-ba12-br100",
+    text: "One of the best places to stay in Manali. The Himalayan Chester offers stunning views, spacious rooms, and exceptional service. The staff made us feel at home, and every detail was taken care of perfectly. Looking forward to visiting again!",
   },
   {
     id: 3,
-    name: "Sarah Jenkins",
-    location: "LONDON, UK",
-    image: "https://i.pravatar.cc/150?u=sarah", // Dummy image
-    text: "Everything about this resort is curated with love. From the local welcome drink to the guided treks, we felt deeply connected to the culture. Highly recommended!",
+    name: "Prashant Sood",
+    location: "GOOGLE REVIEW",
+    image:
+      "https://lh3.googleusercontent.com/a-/ALV-UjUSWvfQ5brZMxUKxwQ-rnA7UGyTNWjum5_9NWJT576JF_Tg6GUe=s120-c-rp-mo-ba12-br100",
+    text: "My stay at The Himalayan Chester, Simsa, Manali was truly delightful. Nestled amidst the majestic mountains, the property offers breathtaking panoramic views of the Manali valley. The rooms were clean, comfortable, and well-maintained, and the hospitality of the staff was exceptional — warm, courteous, and always ready to assist with a smile.",
   },
 ];
 
