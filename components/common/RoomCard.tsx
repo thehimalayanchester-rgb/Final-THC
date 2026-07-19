@@ -1,14 +1,6 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faRulerCombined,
-  faUsers,
-  faBed,
-  faMountainSun,
-} from "@fortawesome/free-solid-svg-icons";
 import type { Room } from "@/lib/rooms";
 import RoomImageCarousel from "@/components/common/RoomImageCarousel";
 import RoomDetailsModal from "@/components/common/RoomDetailsModal";
@@ -17,13 +9,6 @@ const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
   const images =
     room.images && room.images.length > 0 ? room.images : [room.image];
   const [showDetails, setShowDetails] = useState(false);
-
-  const specs = [
-    { icon: faRulerCombined, label: "Size", value: room.size },
-    { icon: faUsers, label: "Occupancy", value: room.occupancy },
-    { icon: faBed, label: "Bed", value: room.bed },
-    { icon: faMountainSun, label: "View", value: room.view },
-  ];
 
   return (
     <motion.div
@@ -35,7 +20,7 @@ const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
     >
       {/* Image carousel */}
       <div className="relative aspect-[4/3] overflow-hidden">
-        <RoomImageCarousel images={images} alt={room.name} />
+        <RoomImageCarousel images={images} alt={room.name} index={index} />
         <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
       </div>
 
@@ -44,73 +29,6 @@ const RoomCard = ({ room, index = 0 }: { room: Room; index?: number }) => {
         <h3 className="font-serif text-white text-2xl mb-5 group-hover:text-[#c5a367] transition-colors">
           {room.name}
         </h3>
-
-        {/* Specs */}
-        <div className="grid grid-cols-2 gap-px bg-white/5 border border-white/5 mb-6">
-          {specs.map((s) => (
-            <div
-              key={s.label}
-              className="bg-[#0d1317] p-3 flex items-start gap-2.5"
-            >
-              <FontAwesomeIcon
-                icon={s.icon}
-                className="text-[#c5a367] text-sm mt-0.5 shrink-0"
-              />
-              <div className="min-w-0">
-                <span className="block text-[9px] font-sans uppercase tracking-[1px] text-gray-500">
-                  {s.label}
-                </span>
-                <span className="block text-white font-sans text-[12px] font-semibold leading-snug">
-                  {s.value}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Inclusions */}
-        {room.inclusions.length > 0 && (
-          <div className="mb-6">
-            <span className="block text-[#c5a367] text-[11px] font-bold uppercase tracking-[2px] mb-3">
-              Inclusions
-            </span>
-            <div className="flex flex-wrap gap-2">
-              {room.inclusions.map((inc) => (
-                <span
-                  key={inc}
-                  className="flex items-center gap-1.5 text-gray-300 text-[12px] font-sans border border-[#c5a367]/30 bg-[#c5a367]/5 px-3 py-1.5"
-                >
-                  <FontAwesomeIcon
-                    icon={faCheck}
-                    className="text-[#c5a367] text-[10px]"
-                  />
-                  {inc}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Features */}
-        <div className="mb-6">
-          <span className="block text-[#c5a367] text-[11px] font-bold uppercase tracking-[2px] mb-3">
-            Room Features
-          </span>
-          <div className="grid grid-cols-1 gap-2">
-            {room.features.map((f) => (
-              <div
-                key={f}
-                className="flex items-center gap-2.5 text-gray-400 font-sans text-[13px]"
-              >
-                <FontAwesomeIcon
-                  icon={faCheck}
-                  className="text-[#c5a367]/70 text-[10px] shrink-0"
-                />
-                {f}
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Rates */}
         <div className="grid grid-cols-2 gap-3 mb-6 mt-auto">
