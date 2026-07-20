@@ -60,16 +60,13 @@ export const roomsData: Room[] = [
   {
     id: 2,
     name: "Honeymoon Suite",
-    image:
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/Videos%20and%20important%20images/IMG%2011.png",
+    image: "/rooms/honeymoon/honeymoon-1.webp",
     images: [
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-5-in4nmo.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-6-bn5aba.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-2-f1u7cn.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-4-z8r4kb.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-3-e8uill.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-1-scailu.webp",
-      "https://ksfgavzcnkfckvsuxfxk.supabase.co/storage/v1/object/public/gallery/honeymoon-suite/1781867172828-0-11on98.webp",
+      "/rooms/honeymoon/honeymoon-1.webp",
+      "/rooms/honeymoon/honeymoon-2.webp",
+      "/rooms/honeymoon/honeymoon-3.webp",
+      "/rooms/honeymoon/honeymoon-4.webp",
+      "/rooms/honeymoon/honeymoon-5.webp",
     ],
     desc: "A romantic retreat crafted for couples, complete with curated indulgences.",
     inclusions: ["Candlelight Dinner", "Cake", "Wine", "Flower Decorations"],
