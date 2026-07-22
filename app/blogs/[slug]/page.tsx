@@ -6,6 +6,9 @@ import { getBlogBySlug } from "@/lib/supabase";
 import JsonLd from "@/components/common/JsonLd";
 import { breadcrumbLd } from "@/lib/seo";
 import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { processBlogContent } from "@/lib/blogContent";
+import BlogTOC from "@/components/blog/BlogTOC";
+import BlogBookingBanner from "@/components/blog/BlogBookingBanner";
 
 export const dynamic = "force-dynamic";
 
@@ -56,6 +59,8 @@ export default async function BlogPostPage({
   const { slug } = await params;
   const blog = await getBlogBySlug(slug);
   if (!blog) notFound();
+
+  const { segments, headings } = processBlogContent(blog.content);
 
   const articleSchema = [
     breadcrumbLd([
@@ -130,17 +135,38 @@ export default async function BlogPostPage({
       {/* Content */}
       <article className="py-14 md:py-20 px-6 md:px-10 lg:px-20">
         <div
-          className="blog-content max-w-3xl mx-auto"
-          dangerouslySetInnerHTML={{ __html: blog.content }}
-        />
+          className={
+            headings.length > 0
+              ? "max-w-6xl mx-auto lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16"
+              : "max-w-6xl mx-auto"
+          }
+        >
+          {headings.length > 0 && <BlogTOC headings={headings} />}
 
-        <div className="max-w-3xl mx-auto mt-16 border-t border-white/5 pt-10">
-          <Link
-            href="/blogs"
-            className="inline-block border border-[#c5a367]/40 px-8 py-3 text-[#c5a367] text-[12px] font-bold uppercase tracking-[2px] hover:bg-[#c5a367] hover:text-black transition-all duration-300"
-          >
-            ← Back to Blog
-          </Link>
+          <div className="max-w-3xl mx-auto lg:mx-0">
+            <BlogBookingBanner />
+
+            {segments.map((segment, i) =>
+              segment.type === "banner" ? (
+                <BlogBookingBanner key={i} />
+              ) : (
+                <div
+                  key={i}
+                  className="blog-content"
+                  dangerouslySetInnerHTML={{ __html: segment.html }}
+                />
+              )
+            )}
+
+            <div className="mt-16 border-t border-white/5 pt-10">
+              <Link
+                href="/blogs"
+                className="inline-block border border-[#c5a367]/40 px-8 py-3 text-[#c5a367] text-[12px] font-bold uppercase tracking-[2px] hover:bg-[#c5a367] hover:text-black transition-all duration-300"
+              >
+                ← Back to Blog
+              </Link>
+            </div>
+          </div>
         </div>
       </article>
     </main>
