@@ -103,7 +103,12 @@ button:disabled {
   line-height: 1.85;
   font-weight: 300;
 }
-.blog-content > * + * {
+/* Content is rendered in per-segment wrapper divs (to allow the banner
+   insertion point), so target adjacent block elements at any depth rather
+   than only direct children. */
+.blog-content
+  :where(h1, h2, h3, h4, p, ul, ol, blockquote, .table-scroll, hr, img)
+  + :where(h1, h2, h3, h4, p, ul, ol, blockquote, .table-scroll, hr, img) {
   margin-top: 1.25rem;
 }
 .blog-content h1,
@@ -196,6 +201,54 @@ button:disabled {
   border-radius: 3px;
   font-size: 0.9em;
   color: var(--gold-light);
+}
+.blog-content li > ul,
+.blog-content li > ol {
+  margin-top: 0.5rem;
+}
+
+/* Tables: the CMS emits raw <table> markup, so wrap it for horizontal
+   scroll on narrow screens instead of letting it overflow the page. */
+.blog-content .table-scroll {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.blog-content table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.blog-content .table-scroll table {
+  margin-top: 0;
+}
+.blog-content th,
+.blog-content td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.blog-content th {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.03);
+}
+.blog-content tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+.blog-content tr:last-child td {
+  border-bottom: none;
+}
+@media (max-width: 480px) {
+  .blog-content th,
+  .blog-content td {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Hide scrollbar (used by the menu category nav & gallery tabs) */
